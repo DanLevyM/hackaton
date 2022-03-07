@@ -17,6 +17,8 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+// Solve req.body issue
+app.use(express.json());
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/user', userRouter);
 const server = app.listen(

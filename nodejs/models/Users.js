@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import bcrypt from 'bcryptjs';
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -31,6 +32,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+});
+
+// Encrypt pwd using bcrypt
+UserSchema.pre('save', async function(next) {
+  const salt = await bcrypt.genSalt(10);
+  // eslint-disable-next-line no-invalid-this
+  this.password = await bcrypt.hash(this.password, salt);
 });
 
 export default mongoose.model('User', UserSchema);
