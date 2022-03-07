@@ -1,14 +1,23 @@
 {
   "name": "nodejs",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "main": "serveur.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production node serveur",
+    "dev": "nodemon serveur"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.3"
-  }
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-google": "^0.14.0",
+    "nodemon": "^2.0.15"
+  },
+  "description": ""
 }
