@@ -41,4 +41,9 @@ UserSchema.pre('save', async function(next) {
   this.password = await bcrypt.hash(this.password, salt);
 });
 
+// Match user entered pwd to hashed pwd in db
+UserSchema.methods.matchPassword = async function(enteredPwd) {
+  return await bcrypt.compare(enteredPwd, this.password);
+};
+
 export default mongoose.model('User', UserSchema);
