@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import slugify from 'slugify';
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -14,7 +15,8 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: [true, 'Please add a password'],
-    minlength: 6,
+    minlength: [6, 'Password cannot be less than 6 characters'],
+    maxlength: [30, 'Password cannot be more than 30 characters'],
     // Dont show pwd
     select: false,
   },
@@ -27,12 +29,22 @@ const UserSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ['admin', 'client', 'tester'],
-    default: 'user',
+    default: 'client',
   },
   name: {
     type: String,
+    minlength: [2, 'Name cannot be less than 2 characters'],
+    maxlength: [30, 'Name cannot be more than 30 characters'],
     required: false,
   },
+  slug: String,
+});
+
+// Create slug from name
+UserSchema.pre('save', function(next) {
+  // eslint-disable-next-line no-invalid-this
+  this.slug = slugify(this.name, {lower: true});
+  next();
 });
 
 // Encrypt pwd using bcrypt

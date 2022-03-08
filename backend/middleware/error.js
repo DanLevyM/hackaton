@@ -8,7 +8,7 @@ export default function errorHandler(err, req, res, next) {
   // console.log(err.name);
   console.log(err);
   if (err.name === 'CastError') {
-    const message = `User ${err.value} not found! Wrong format.`;
+    const message = `${err.value} not found! Wrong format.`;
     error = new ErrorResponse(message, 404);
   }
 

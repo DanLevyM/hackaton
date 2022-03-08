@@ -7,7 +7,8 @@ import connectDB from './config/db.js';
 import errorHandler from './middleware/error.js';
 // Route files
 import adminRouter from './routes/admin.router.js';
-import userRouter from './routes/auth.router.js';
+import userRouter from './routes/user.router.js';
+import productRouter from './routes/product.router.js';
 
 dotenv.config({path: './config/config.env'});
 connectDB();
@@ -22,6 +23,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/user', userRouter);
+app.use('/api/v1/product', productRouter);
 app.use(errorHandler);
 const server = app.listen(
     PORT,

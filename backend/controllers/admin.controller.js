@@ -7,10 +7,13 @@ import asyncHandler from '../middleware/async.js';
 // @access  Private
 export const getUsers = asyncHandler(async (req, res, next) => {
   const users = await User.find();
+  // TO CHECK IF IT USELESS
   if (!users.length) {
-    return next(new ErrorResponse('No user in collection', 404));
+    return res
+        .status(200)
+        .send({users: [], success: true});
   }
-  res
+  return res
       .status(200)
       .send({users: users, success: true});
 });
@@ -23,7 +26,10 @@ export const getUser = asyncHandler(async (req, res, next) => {
   if (!user) {
     return next(new ErrorResponse(`User ${req.params.id} not found!`, 404));
   }
-  return res.status(200).json({success: true, data: user});
+  return res.status(200).json({
+    success: true,
+    data: user,
+  });
 });
 
 // @desc    Create user
@@ -40,7 +46,11 @@ export const createUser = asyncHandler(async (req, res, next) => {
     role,
   });
 
-  res.status(200).json({success: true, message: 'User created'});
+  res.status(200).json({
+    success: true,
+    message: 'User created',
+    data: user,
+  });
 });
 
 // @desc    Update one user
@@ -51,7 +61,10 @@ export const updateUser = asyncHandler(async (req, res, next) => {
   if (!user) {
     return next(new ErrorResponse(`User ${req.params.id} not found!`, 404));
   }
-  return res.status(200).json({success: true, data: user});
+  return res.status(200).json({
+    success: true,
+    data: user,
+  });
 });
 
 // @desc    Delete one user
@@ -62,5 +75,8 @@ export const deleteUser = asyncHandler(async (req, res, next) => {
   if (!user) {
     return next(new ErrorResponse(`User ${req.params.id} not found!`, 404));
   }
-  return res.status(200).json({success: true, data: user});
+  return res.status(200).json({
+    success: true,
+    data: user,
+  });
 });

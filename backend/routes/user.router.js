@@ -1,4 +1,7 @@
-import {login, updatePassword} from '../controllers/auth.controller.js';
+import {
+  login,
+  updatePassword,
+} from '../controllers/user.controller.js';
 import express from 'express';
 
 // eslint-disable-next-line new-cap
