@@ -1,0 +1,59 @@
+@import "../../styles.scss";
+
+$navbar-height: 100px;
+
+#navbar-container {
+    height: $navbar-height;
+
+    a, li a {
+        color: $charcoal;
+    }
+
+    .logo {
+        height: $navbar-height;
+        width: $navbar-height;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    li.nav-item:hover > a {
+        color: $blueWave
+    }
+
+    .navbar-nav > li > a {
+        text-transform: uppercase;
+        font-size: 12px;
+        margin-right: 20px;
+    }
+
+    .navbar-toggler {
+        padding: .20rem .50rem;
+        font-size: 1.25rem;
+        line-height: 1;
+        background-color: transparent;
+        border: 1px solid $charcoal;
+    }
+
+    .navbar-brand {
+        color: $white;
+        font-family: 'Allerta Stencil', sans-serif;
+        margin-bottom: 4px;
+        font-size: 27px
+    }
+
+    &.navbar-sand {
+        background-color: $sandDune;
+        color: $charcoal;
+    }
+
+    .all-show {
+        z-index: 10
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+}
