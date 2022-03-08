@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import slugify from 'slugify';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config({path: '../config/config.env'});
 
 const UserSchema = new mongoose.Schema({
   email: {
@@ -56,6 +60,16 @@ UserSchema.pre('save', async function(next) {
 
 // Match user entered pwd to hashed pwd in db
 UserSchema.methods.matchPassword = async function(enteredPwd) {
+  return await bcrypt.compare(enteredPwd, this.password);
+};
+
+// Sign JWT and return
+UserSchema.methods.getSignedJwtToken = function() {
+  return jwt.sign({id: this._id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRE});
+};
+
+// Match user entered pwd to hashed pwd in db
+UserSchema.methods.matchPasswor = async function(enteredPwd) {
   return await bcrypt.compare(enteredPwd, this.password);
 };
 

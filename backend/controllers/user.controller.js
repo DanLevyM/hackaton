@@ -18,12 +18,15 @@ export const login = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('Please add valid email and password', 401));
   }
 
+  // Check if pwd matches
   const isMatch = await user.matchPassword(password);
   if (!isMatch) {
     return next(new ErrorResponse('Invalid credentials', 401));
   }
 
-  res.status(200).json({success: true});
+  const token = user.getSignedJwtToken();
+
+  res.status(200).json({success: true, token});
 });
 
 // @desc    User update password
