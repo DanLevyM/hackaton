@@ -1,29 +1,30 @@
 import User from '../models/Users.js';
+import asyncHandler from '../middleware/async.js';
+import ErrorResponse from '../utils/errorResponse.js';
 
 // @desc    Login
 // @desc    POST /api/v1/user/pwd
 // @access  Public
-export async function login(req, res, next) {
+export const login = asyncHandler(async (req, res, next) => {
   const {email, password} = req.body;
   if (!email || !password) {
-    // ErrorResponse
-    return next(new Error());
+    return next(new ErrorResponse('Please provide valid email and password', 400));
   }
 
   // Check for user
   const user = await User.findOne({email}).select('+password');
 
   if (!user) {
-    // Invalid credentials
+    return next(new ErrorResponse('Please add valid email and password', 401));
   }
 
   const isMatch = await user.matchPassword(password);
   if (!isMatch) {
-    process.exit();
+    return next(new ErrorResponse('Invalid credentials', 401));
   }
 
   res.status(200).json({success: true});
-}
+});
 
 // @desc    User update password
 // @desc    PUT /api/v1/user/pwd

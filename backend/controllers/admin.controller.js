@@ -1,34 +1,35 @@
 import User from '../models/Users.js';
+import ErrorResponse from '../utils/errorResponse.js';
+import asyncHandler from '../middleware/async.js';
 
 // @desc    Get all users
 // @desc    GET /api/v1/admin/users
 // @access  Private
-export function getUsers(req, res, next) {
+export const getUsers = asyncHandler(async (req, res, next) => {
+  const users = await User.find();
+  if (!users.length) {
+    return next(new ErrorResponse('No user in collection', 404));
+  }
   res
       .status(200)
-      .send({users: [], success: true});
-}
+      .send({users: users, success: true});
+});
 
 // @desc    Get one user
 // @desc    GET /api/v1/admin/user/:id
 // @access  Private
-export async function getUser(req, res, next) {
-  try {
-    const user = await User.findById(req.params.id);
-    if (!user) {
-      return res.status(500).json({success: false});
-    }
-    return res.status(200).json({success: true, data: user});
-  } catch (err) {
-    next(err);
-    // return res.status(500).json({success: false});
+export const getUser = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return next(new ErrorResponse(`User ${req.params.id} not found!`, 404));
   }
-}
+  return res.status(200).json({success: true, data: user});
+});
 
 // @desc    Create user
 // @desc    POST /api/v1/admin/user
 // @access  Private
-export async function createUser(req, res, next) {
+export const createUser = asyncHandler(async (req, res, next) => {
   const {email, name, password, role} = req.body;
 
   // eslint-disable-next-line no-unused-vars
@@ -40,22 +41,26 @@ export async function createUser(req, res, next) {
   });
 
   res.status(200).json({success: true, message: 'User created'});
-};
+});
 
 // @desc    Update one user
 // @desc    PUT /api/v1/admin/user/:id
 // @access  Private
-export function updateUser(req, res, next) {
-  res
-      .status(200)
-      .send({success: true, message: `User ${req.params.id } updated!`});
-}
+export const updateUser = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return next(new ErrorResponse(`User ${req.params.id} not found!`, 404));
+  }
+  return res.status(200).json({success: true, data: user});
+});
 
 // @desc    Delete one user
 // @desc    DELETE /api/v1/admin/user/:id
 // @access  Private
-export function deleteUser(req, res, next) {
-  res
-      .status(200)
-      .send({success: true, message: `User id: ${req.params.id } deleted`});
-}
+export const deleteUser = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.params.id);
+  if (!user) {
+    return next(new ErrorResponse(`User ${req.params.id} not found!`, 404));
+  }
+  return res.status(200).json({success: true, data: user});
+});
