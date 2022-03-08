@@ -6,7 +6,7 @@ import {
   updateUser,
   deleteUser,
 } from '../controllers/admin.controller.js';
-import {protect} from '../middleware/auth.js';
+import {protect, authorize} from '../middleware/auth.js';
 
 // eslint-disable-next-line new-cap
 const router = express.Router();
@@ -14,7 +14,7 @@ const router = express.Router();
 router
     .route('/users/')
     .get(getUsers)
-    .post(createUser);
+    .post(protect, authorize('admin'), createUser);
 
 router
     .route('/user/:id')

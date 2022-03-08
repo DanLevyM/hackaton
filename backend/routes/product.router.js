@@ -12,7 +12,7 @@ const productRouter = express.Router();
 
 productRouter
     .route('/new')
-    .post(protect, createProduct);
+    .post(protect, authorize('admin'), createProduct);
 productRouter
     .route('/update/:id')
     .put(protect, updateProduct);
