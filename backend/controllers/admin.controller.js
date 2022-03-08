@@ -7,6 +7,8 @@ import asyncHandler from '../middleware/async.js';
 // @access  Private
 export const getUsers = asyncHandler(async (req, res, next) => {
   const users = await User.find();
+  console.log(req.query);
+
   // TO CHECK IF IT USELESS
   if (!users.length) {
     return res
