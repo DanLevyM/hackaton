@@ -1,0 +1,82 @@
+[
+  {
+    "email": "admin1@admin.com",
+    "password": "pwdpwdpwd",
+    "role": "admin",
+    "name": "admin1",
+    "createdAt": "2022-03-08T15:19:04.750Z",
+    "slug": "admin1"
+  },
+  {
+    "email": "admin2@admin.com",
+    "password": "pwdpwdpwd",
+    "role": "admin",
+    "name": "admin2",
+    "createdAt": "2022-03-07T15:19:04.750Z",
+    "slug": "admin2"
+  },
+  {
+    "email": "admin3@admin.com",
+    "password": "pwdpwdpwd",
+    "role": "admin",
+    "name": "admin3",
+    "createdAt": "2022-03-02T15:19:04.750Z",
+    "slug": "admin3"
+  },
+  {
+    "email": "client1@client.com",
+    "password": "pwdpwdpwd",
+    "role": "client",
+    "name": "client1",
+    "createdAt": "2022-03-08T15:19:04.750Z",
+    "slug": "client1"
+  },
+  {
+    "email": "client2@client.com",
+    "password": "pwdpwdpwd",
+    "role": "client",
+    "name": "client2",
+    "createdAt": "2022-03-07T15:19:04.750Z",
+    "slug": "client2"
+  },
+  {
+    "email": "client3@client.com",
+    "password": "pwdpwdpwd",
+    "role": "client",
+    "name": "client3",
+    "createdAt": "2022-03-01T15:19:04.750Z",
+    "slug": "client3"
+  },
+  {
+    "email": "client4@client.com",
+    "password": "pwdpwdpwd",
+    "role": "client",
+    "name": "client4",
+    "createdAt": "2022-03-02T15:19:04.750Z",
+    "slug": "client4"
+  },
+  {
+    "email": "client5@client.com",
+    "password": "pwdpwdpwd",
+    "role": "client",
+    "name": "client5",
+    "createdAt": "2022-03-03T15:19:04.750Z",
+    "slug": "client5"
+  },
+  {
+    "email": "tester1@tester.com",
+    "password": "pwdpwdpwd",
+    "role": "tester",
+    "name": "tester1",
+    "createdAt": "2022-03-08T15:19:04.750Z",
+    "slug": "tester1"
+  },
+  {
+    "email": "tester2@tester.com",
+    "password": "pwdpwdpwd",
+    "role": "tester",
+    "name": "tester2",
+    "createdAt": "2022-03-03T15:19:04.750Z",
+    "slug": "tester2"
+  }
+]

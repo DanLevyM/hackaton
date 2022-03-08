@@ -7,6 +7,8 @@ import asyncHandler from '../middleware/async.js';
 // @access  Private
 export const getUsers = asyncHandler(async (req, res, next) => {
   const users = await User.find();
+  console.log(req.query);
+
   // TO CHECK IF IT USELESS
   if (!users.length) {
     return res
@@ -46,10 +48,13 @@ export const createUser = asyncHandler(async (req, res, next) => {
     role,
   });
 
+  const token = user.getSignedJwtToken();
+
   res.status(200).json({
     success: true,
     message: 'User created',
     data: user,
+    token,
   });
 });
 
@@ -71,7 +76,7 @@ export const updateUser = asyncHandler(async (req, res, next) => {
 // @desc    DELETE /api/v1/admin/user/:id
 // @access  Private
 export const deleteUser = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
+  const user = await User.findByIdAndDelete(req.params.id);
   if (!user) {
     return next(new ErrorResponse(`User ${req.params.id} not found!`, 404));
   }

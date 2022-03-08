@@ -4,6 +4,7 @@ import morgan from 'morgan';
 // eslint-disable-next-line no-unused-vars
 import colors from 'colors';
 import connectDB from './config/db.js';
+import cookieParser from 'cookie-parser';
 import errorHandler from './middleware/error.js';
 // Route files
 import adminRouter from './routes/admin.router.js';
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Solve req.body issue
 app.use(express.json());
+app.use(cookieParser());
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/product', productRouter);
