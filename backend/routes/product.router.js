@@ -5,14 +5,22 @@ import {
   getProducts,
 } from '../controllers/product.controller.js';
 import express from 'express';
-import authorize from '../middleware/auth.js';
+import {protect, authorize} from '../middleware/auth.js';
 
 // eslint-disable-next-line new-cap
 const productRouter = express.Router();
 
-productRouter.post('/new', createProduct);
-productRouter.get('/all', getProducts);
-productRouter.put('/update/:id', updateProduct);
-productRouter.delete('/delete/:id', deleteProduct);
+productRouter
+    .route('/new')
+    .post(protect, createProduct);
+productRouter
+    .route('/update/:id')
+    .put(protect, updateProduct);
+productRouter
+    .route('/delete/:id')
+    .delete(protect, deleteProduct);
+productRouter
+    .route('/all')
+    .get(protect, getProducts);
 
 export default productRouter;
