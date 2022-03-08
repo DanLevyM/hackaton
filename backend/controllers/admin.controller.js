@@ -12,10 +12,17 @@ export function getUsers(req, res, next) {
 // @desc    Get one user
 // @desc    GET /api/v1/admin/user/:id
 // @access  Private
-export function getUser(req, res, next) {
-  res
-      .status(200)
-      .send({success: true, message: `GET 1 user id: ${req.params.id }`});
+export async function getUser(req, res, next) {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+      return res.status(500).json({success: false});
+    }
+    return res.status(200).json({success: true, data: user});
+  } catch (err) {
+    next(err);
+    // return res.status(500).json({success: false});
+  }
 }
 
 // @desc    Create user

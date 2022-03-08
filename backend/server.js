@@ -4,6 +4,7 @@ import morgan from 'morgan';
 // eslint-disable-next-line no-unused-vars
 import colors from 'colors';
 import connectDB from './config/db.js';
+import errorHandler from './middleware/error.js';
 // Route files
 import adminRouter from './routes/admin.router.js';
 import userRouter from './routes/auth.router.js';
@@ -21,6 +22,7 @@ if (process.env.NODE_ENV === 'development') {
 app.use(express.json());
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/user', userRouter);
+app.use(errorHandler);
 const server = app.listen(
     PORT,
     // eslint-disable-next-line max-len
