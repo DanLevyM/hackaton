@@ -26,10 +26,11 @@ export class AuthService {
 
   /**
    * Set token to local storage
+   * @param key Element key
    * @param value Local storage value
    */
-  public setToken(value: string): void {
-    localStorage.setItem('token', value);
+  public setToken(key: string, value: string): void {
+    localStorage.setItem(key, value);
   }
 
   /**
