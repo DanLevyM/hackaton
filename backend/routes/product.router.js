@@ -2,6 +2,7 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
+  getProduct,
   getProducts,
 } from '../controllers/product.controller.js';
 import express from 'express';
@@ -22,5 +23,8 @@ productRouter
 productRouter
     .route('/all')
     .get(protect, authorize('admin', 'client'), getProducts);
+productRouter
+    .route('/:id')
+    .get(protect, authorize('admin', 'client'), getProduct);
 
 export default productRouter;
