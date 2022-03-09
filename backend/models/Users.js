@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import slugify from 'slugify';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import crypto from 'crypto';
 
 dotenv.config({path: '../config/config.env'});
 
@@ -53,6 +54,11 @@ UserSchema.pre('save', function(next) {
 
 // Encrypt pwd using bcrypt
 UserSchema.pre('save', async function(next) {
+  // eslint-disable-next-line no-invalid-this
+  if (!this.isModified('password')) {
+    next();
+  }
+
   const salt = await bcrypt.genSalt(10);
   // eslint-disable-next-line no-invalid-this
   this.password = await bcrypt.hash(this.password, salt);
@@ -71,6 +77,19 @@ UserSchema.methods.getSignedJwtToken = function() {
 // Match user entered pwd to hashed pwd in db
 UserSchema.methods.matchPasswor = async function(enteredPwd) {
   return await bcrypt.compare(enteredPwd, this.password);
+};
+
+// Generate and hash password token
+UserSchema.methods.getResetPwdToken = function() {
+  // Generate token
+  const resetToken = crypto.randomBytes(20).toString();
+
+  // Hash token
+  this.resetPasswordToken = crypto
+      .createHash('sha256')
+      .update(resetToken)
+      .digest('hex');
+  this.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
 };
 
 export default mongoose.model('User', UserSchema);
