@@ -13,13 +13,13 @@ const router = express.Router();
 
 router
     .route('/users/')
-    .get(getUsers)
+    .get(protect, authorize('admin'), getUsers)
     .post(protect, authorize('admin'), createUser);
 
 router
     .route('/user/:id')
-    .get(getUser)
-    .put(updateUser)
-    .delete(protect, deleteUser);
+    .get(protect, authorize('admin'), getUser)
+    .put(protect, authorize('admin'), updateUser)
+    .delete(protect, authorize('admin'), deleteUser);
 
 export default router;

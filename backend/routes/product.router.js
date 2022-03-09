@@ -12,15 +12,15 @@ const productRouter = express.Router();
 
 productRouter
     .route('/new')
-    .post(protect, authorize('admin'), createProduct);
+    .post(protect, authorize('admin', 'client'), createProduct);
 productRouter
     .route('/update/:id')
-    .put(protect, updateProduct);
+    .put(protect, authorize('admin', 'client'), updateProduct);
 productRouter
     .route('/delete/:id')
-    .delete(protect, deleteProduct);
+    .delete(protect, authorize('admin', 'client'), deleteProduct);
 productRouter
     .route('/all')
-    .get(protect, getProducts);
+    .get(protect, authorize('admin', 'client'), getProducts);
 
 export default productRouter;
