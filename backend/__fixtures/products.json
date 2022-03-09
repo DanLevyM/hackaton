@@ -1,38 +1,47 @@
 [
   {
     "name": "Product 1",
-    "price": 12
+    "price": 12,
+    "user": "6228a774926b58cf2deb85a2"
   },
   {
     "name": "Product 2",
-    "price": 13
+    "price": 13,
+    "user": "6228a774926b58cf2deb85a2"
   },
   {
     "name": "Product 3",
-    "price": 14
+    "price": 14,
+    "user": "6228a774926b58cf2deb85a4"
   },
   {
     "name": "Product 4",
-    "price": 15
+    "price": 15,
+    "user": "6228a774926b58cf2deb85a4"
   },
   {
     "name": "Product 5",
-    "price": 16
+    "price": 16,
+    "user": "6228a774926b58cf2deb85a4"
   },
   {
     "name": "Product 6",
-    "price": 17
+    "price": 17,
+    "user": "6228a774926b58cf2deb85a4"
   },
   {
     "name": "Product 7",
-    "price": 18
+    "price": 18,
+    "user": "6228a774926b58cf2deb85a4"
   },
   {
     "name": "Product 8",
-    "price": 19
+    "price": 19,
+    "user": "6228a774926b58cf2deb85a5"
   },
   {
     "name": "Product 9",
-    "price": 20
+    "price": 20,
+    "user": "6228a774926b58cf2deb85a5"
   }
 ]
