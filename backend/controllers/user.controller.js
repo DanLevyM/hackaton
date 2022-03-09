@@ -6,7 +6,7 @@ import dotenv from 'dotenv';
 dotenv.config({path: '../config/config.env'});
 
 // @desc    Login
-// @desc    POST /api/v1/user/pwd
+// @path    POST /api/v1/user/pwd
 // @access  Public
 export const login = asyncHandler(async (req, res, next) => {
   const {email, password} = req.body;
@@ -32,7 +32,7 @@ export const login = asyncHandler(async (req, res, next) => {
 
 
 // @desc    User update password
-// @desc    PUT /api/v1/user/pwd
+// @path    PUT /api/v1/user/pwd
 // @access  Private
 export async function updatePassword(req, res, next) {
   const {oldPwd, newPwd} = req.body;
@@ -62,7 +62,7 @@ function sendTokenResponse(user, statusCode, res) {
 };
 
 // @desc    Get current logged in user
-// @route   POST /api/v1/auth/me
+// @path   POST /api/v1/auth/me
 // @access  Private
 export const getMe = asyncHandler(async (req, res, next) => {
   const user = await User.findById(req.user.id);

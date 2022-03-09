@@ -3,7 +3,7 @@ import asyncHandler from '../middleware/async.js';
 import ErrorResponse from '../utils/errorResponse.js';
 
 // @desc    Create product
-// @desc    POST /api/v1/product/new
+// @path    POST /api/v1/product/new
 // @access  Private
 export const createProduct = asyncHandler(async (req, res, next) => {
   req.body.user = req.user.id;
@@ -17,7 +17,7 @@ export const createProduct = asyncHandler(async (req, res, next) => {
   const product = await Product.create({
     name,
     price,
-    author: req.body.user,
+    user: req.body.user,
   });
 
   res.status(200).json({
@@ -27,8 +27,19 @@ export const createProduct = asyncHandler(async (req, res, next) => {
   });
 });
 
+// @desc    Get 1 product
+// @path    GET /api/v1/product/:id
+// @access  Private
+export const getProduct = asyncHandler(async (req, res, next) => {
+  const product = await Product.findById(req.params.id);
+
+  if (!product) return next(new ErrorResponse('Invalid product', 400));
+
+  return res.status(200).json({success: true, data: product});
+});
+
 // @desc    Get all products
-// @desc    GET /api/v1/product/all
+// @path    GET /api/v1/product/all
 // @access  Private
 export const getProducts = asyncHandler(async (req, res, next) => {
   const reqQuery = {...req.query};
@@ -97,7 +108,7 @@ export const getProducts = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Update product
-// @desc    PUT /api/v1/product/update/:id
+// @path    PUT /api/v1/product/update/:id
 // @access  Private
 export const updateProduct = asyncHandler(async (req, res, next) => {
   const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
@@ -111,7 +122,7 @@ export const updateProduct = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Delete product
-// @desc    DELETE /api/v1/product/delete/:id
+// @path    DELETE /api/v1/product/delete/:id
 // @access  Private
 export const deleteProduct = asyncHandler(async (req, res, next) => {
   const product = await Product.findByIdAndDelete(req.params.id);
