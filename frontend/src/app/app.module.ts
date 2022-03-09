@@ -8,20 +8,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './shared/services/auth.service';
 import { ContactComponent } from './contact/contact.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { DataComponent } from './data/data.component';
 import { Error404Component } from './error404/error404.component';
+import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { WhatWeDoComponent } from './what-we-do/what-we-do.component';
+import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContactComponent,
     DashboardComponent,
+    DataComponent,
     Error404Component,
+    FooterComponent,
     HeaderComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    WhatWeDoComponent,
+    WhoWeAreComponent
   ],
   imports: [
     AppRoutingModule,
