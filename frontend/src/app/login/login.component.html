@@ -39,10 +39,13 @@
                     <div *ngIf="authForm?.touched && authForm?.controls?.['password']?.errors?.['minlength']" class="text-danger mb-3">
                         Password must contains at least {{ authForm?.touched && authForm?.controls?.['password']?.errors?.['minlength']?.requiredLength }} characters.
                     </div>
-                    <div class="text-center">
+                    <div class="text-center pointer">
                         <button [disabled]="!authForm.valid" type="submit" class="btn btn-color px-5 w-100" (click)="login()">
                             Login
                         </button>
+                    </div>
+                    <div class="back pointer" [routerLink]="['']">
+                        Go to home page
                     </div>
                 </form>
             </div>

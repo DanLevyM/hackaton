@@ -3,6 +3,10 @@
 #login-container {
     height: 100vh;
 
+    form {
+        padding: 30px 48px !important
+    }
+
     h2 {
         color: $charcoal;
     }
@@ -34,4 +38,18 @@
     a {
         text-decoration: none;
     }
+
+    .back {
+        text-align: center;
+        margin-top: 20px;
+        font-style: italic;
+
+        &:hover {
+            color: $skyBlue;
+        }
+    }
+}
+
+.pointer {
+    cursor: pointer;
 }
