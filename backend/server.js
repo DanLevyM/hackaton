@@ -16,6 +16,15 @@ connectDB();
 const PORT = process.env.PORT || 5001;
 const app = express();
 
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200'); // all origin can access
+  res.setHeader('Access-Control-Allow-Credentials', true);
+  // eslint-disable-next-line max-len
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'); // headers available
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS'); // methods available
+  next();
+});
+
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
@@ -23,9 +32,13 @@ if (process.env.NODE_ENV === 'development') {
 // Solve req.body issue
 app.use(express.json());
 app.use(cookieParser());
+
+
+
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/product', productRouter);
+
 app.use(errorHandler);
 const server = app.listen(
     PORT,

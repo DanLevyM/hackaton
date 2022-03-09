@@ -20,10 +20,6 @@ export class AuthService {
     return this.http.post(`${this.URL}api/v1/user/login`, {
       email,
       password
-    }, {
-      headers: {
-        'Access-Control-Allow-Origin':'*',
-      }
     });
   }
 }
