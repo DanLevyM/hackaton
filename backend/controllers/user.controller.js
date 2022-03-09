@@ -30,6 +30,7 @@ export const login = asyncHandler(async (req, res, next) => {
   sendTokenResponse(user, 200, res);
 });
 
+
 // @desc    User update password
 // @desc    PUT /api/v1/user/pwd
 // @access  Private
