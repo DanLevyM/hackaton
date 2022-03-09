@@ -6,20 +6,22 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './shared/services/auth.service';
+import { ContactComponent } from './contact/contact.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { Error404Component } from './error404/error404.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ContactComponent,
     DashboardComponent,
+    Error404Component,
     HeaderComponent,
     HomeComponent,
-    LoginComponent,
-    ContactComponent
+    LoginComponent
   ],
   imports: [
     AppRoutingModule,

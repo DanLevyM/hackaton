@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -21,5 +22,22 @@ export class AuthService {
       email,
       password
     });
+  }
+
+  /**
+   * Set token to local storage
+   * @param value Local storage value
+   */
+  public setToken(value: string): void {
+    localStorage.setItem('token', value);
+  }
+
+  /**
+   * Get if user is authenticated or not
+   * @returns User authenticated or not
+   */
+  public isAuthenticated(): boolean {
+    const hasToken = localStorage.getItem('token');
+    return (hasToken) ? true : false;
   }
 }

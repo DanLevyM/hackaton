@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(email, password).subscribe((res: any) => {
       if (res.success) {
+        this.authService.setToken(res.token);
         this.router.navigate(['/dashboard']);
       }
     });

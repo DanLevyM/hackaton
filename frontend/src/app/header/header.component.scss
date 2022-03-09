@@ -16,11 +16,18 @@ $navbar-height: 100px;
         img {
             height: 100%;
             width: 100%;
+            margin-left: -12px
         }
     }
 
     li.nav-item:hover > a {
         color: $blueWave
+    }
+
+    .nav-link.dashboard {
+        @media (max-width: 991px) {
+            padding-top: 0 !important;
+        }
     }
 
     .navbar-nav > li > a {

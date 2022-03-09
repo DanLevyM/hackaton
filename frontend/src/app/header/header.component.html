@@ -1,8 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-sand pt-0" id="navbar-container">
     <div class="wrapper"></div>
     <div class="container-fluid all-show">
-        <div class="logo pointer">
-            <img src="../../assets/images/wb-logo.png" alt="Wired beauty logo">
+        <div class="logo pointer" [routerLink]="['']">
+            <img src="../../assets/images/wb-logo.svg" alt="Wired beauty logo">
         </div>
         <button
             class="navbar-toggler"
@@ -16,9 +16,6 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">HOME</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">WHAT WE DO</a>
                 </li>
@@ -35,7 +32,12 @@
             <div class="d-flex flex-column sim">
                 <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" [routerLink]="['/login']">SIGN IN</a>
+                        <ng-container *ngIf="!isAuthenticated">
+                            <a class="nav-link" [routerLink]="['/login']">SIGN IN</a>
+                        </ng-container>
+                        <ng-container *ngIf="isAuthenticated">
+                            <a class="nav-link dashboard" [routerLink]="['/dashboard']">DASHBOARD</a>
+                        </ng-container>
                     </li>
                 </ul>
             </div>
