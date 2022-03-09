@@ -1,0 +1,54 @@
+<div class="container" id="login-container">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6">
+            <div class="card">
+                <form [formGroup]="authForm" class="card-body cardbody-color p-lg-5">
+                    <h2 class="text-center text-dark">Authentication</h2>
+                    <div class="text-center logo">
+                        <img
+                            src="../../assets/images/wb-logo.png"
+                            class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                            alt="Wired beauty logo">
+                    </div>
+                    <div class="mb-3">
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="email"
+                            aria-describedby="email"
+                            placeholder="Enter email ..."
+                            formControlName="email">
+                    </div>
+                    <div *ngIf="authForm?.touched && authForm?.controls?.['email']?.errors?.['required']" class="text-danger mb-3">
+                        Email is required.
+                    </div>
+                    <div *ngIf="authForm?.touched && authForm?.controls?.['email']?.errors?.['email']" class="text-danger mb-3">
+                        Email format not respected.
+                    </div>
+                    <div class="mb-3">
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            placeholder="Enter password ..."
+                            formControlName="password">
+                    </div>
+                    <div *ngIf="authForm?.touched && authForm?.controls?.['password']?.errors?.['required']" class="text-danger mb-3">
+                        Password is required.
+                    </div>
+                    <div *ngIf="authForm?.touched && authForm?.controls?.['password']?.errors?.['minlength']" class="text-danger mb-3">
+                        Password must contains at least {{ authForm?.touched && authForm?.controls?.['password']?.errors?.['minlength']?.requiredLength }} characters.
+                    </div>
+                    <div class="text-center">
+                        <button [disabled]="!authForm.valid" type="submit" class="btn btn-color px-5 w-100" (click)="login()">
+                            Login
+                        </button>
+                    </div>
+                </form>
+                <!-- <pre>
+                    {{ authForm.value | json }}
+                </pre> -->
+            </div>
+        </div>
+    </div>
+</div>
