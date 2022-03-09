@@ -1,8 +1,10 @@
+/* eslint-disable max-len */
 import User from '../models/Users.js';
 import asyncHandler from '../middleware/async.js';
 import ErrorResponse from '../utils/errorResponse.js';
 import dotenv from 'dotenv';
 import crypto from 'crypto';
+import sendEmail from '../utils/send-emails.js';
 
 dotenv.config({path: '../config/config.env'});
 
@@ -63,14 +65,34 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('There is no user with that email', 404));
   }
 
-  user.getResetPwdToken();
+  const resetToken = user.getResetPwdToken();
 
-  user.save({validateBeforeSave: false});
+  console.log(resetToken);
+  await user.save({validateBeforeSave: false});
 
-  res.status(200).json({
-    success: true,
-    data: user,
-  });
+  // Create reset url
+  console.log('req protocol', req.protocol);
+  console.log('req.get(host)', req.get('host'));
+  console.log('resetTok', resetToken);
+
+  const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/user/resetpassword/${resetToken}`;
+  const message = `You are receiving this email because you has requested the reset of a password. Please make a PUT request to \n\n ${resetUrl}`;
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: 'Password reset token',
+      message,
+    });
+    res.status(200).json({success: true, data: 'Email sent!'});
+  } catch (err) {
+    console.log(err);
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+
+    await user.save({validateBeforeSave: false});
+    return next(new ErrorResponse('Email could not be send'), 500);
+  }
 });
 
 // @desc    Reset password

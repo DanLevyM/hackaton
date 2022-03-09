@@ -82,7 +82,7 @@ UserSchema.methods.matchPasswor = async function(enteredPwd) {
 // Generate and hash password token
 UserSchema.methods.getResetPwdToken = function() {
   // Generate token
-  const resetToken = crypto.randomBytes(20).toString();
+  const resetToken = crypto.randomBytes(20).toString('hex');
 
   // Hash token
   this.resetPasswordToken = crypto
@@ -90,6 +90,8 @@ UserSchema.methods.getResetPwdToken = function() {
       .update(resetToken)
       .digest('hex');
   this.resetPasswordExpire = Date.now() + 10 * 60 * 1000;
+
+  return resetToken;
 };
 
 export default mongoose.model('User', UserSchema);
