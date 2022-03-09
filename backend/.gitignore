@@ -1,2 +1,4 @@
 node_modules/
 config/config.env
+utils/DS_Store
+.DS_Store

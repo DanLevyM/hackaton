@@ -10,6 +10,7 @@ import errorHandler from './middleware/error.js';
 import adminRouter from './routes/admin.router.js';
 import userRouter from './routes/user.router.js';
 import productRouter from './routes/product.router.js';
+import contactRouter from './routes/contact.router.js';
 
 dotenv.config({path: './config/config.env'});
 connectDB();
@@ -36,6 +37,7 @@ app.use(cookieParser());
 app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/product', productRouter);
+app.use('/api/v1/contact', contactRouter);
 
 app.use(errorHandler);
 const server = app.listen(

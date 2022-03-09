@@ -2,6 +2,7 @@ import User from '../models/Users.js';
 import asyncHandler from '../middleware/async.js';
 import ErrorResponse from '../utils/errorResponse.js';
 import dotenv from 'dotenv';
+import crypto from 'crypto';
 
 dotenv.config({path: '../config/config.env'});
 
@@ -40,6 +41,64 @@ export async function updatePassword(req, res, next) {
   res.status(200).json({success: true, oldPwd: `${oldPwd}`, newPwd: `${newPwd}`});
 }
 
+// @desc    Get current logged in user
+// @path    POST /api/v1/auth/me
+// @access  Private
+export const getMe = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  res.status(200).json({
+    success: true,
+    data: user,
+  });
+});
+
+// @desc    Forgot password
+// @path    POST /api/v1/user/forgotpassword
+// @access  Public
+export const forgotPassword = asyncHandler(async (req, res, next) => {
+  const user = await User.findOne({email: req.body.email});
+
+  if (!user) {
+    return next(new ErrorResponse('There is no user with that email', 404));
+  }
+
+  user.getResetPwdToken();
+
+  user.save({validateBeforeSave: false});
+
+  res.status(200).json({
+    success: true,
+    data: user,
+  });
+});
+
+// @desc    Reset password
+// @path    PUT /api/v1/user/resetpassword/:resettoken
+// @access  Private
+export const resetPassword = asyncHandler(async (req, res, next) => {
+  const resetPasswordToken = crypto
+      .createHash('sha256')
+      .update(req.params.resettoken)
+      .digest('hex');
+
+  const user = await User.findOne({
+    resetPasswordToken,
+    resetPasswordExpire: {$gt: Date.now()},
+  });
+
+  if (!user) {
+    return next(new ErrorResponse('Invalid token', 400));
+  }
+
+  user.password = req.body.password;
+  user.resetPasswordToken = undefined;
+  user.resetPasswordExpire = undefined;
+  user.save();
+
+  sendTokenResponse(user, 200, res);
+});
+
 // Get token from model, create cookie and send resp
 function sendTokenResponse(user, statusCode, res) {
   const token = user.getSignedJwtToken();
@@ -62,15 +121,3 @@ function sendTokenResponse(user, statusCode, res) {
         expires,
       });
 };
-
-// @desc    Get current logged in user
-// @path   POST /api/v1/auth/me
-// @access  Private
-export const getMe = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.user.id);
-
-  res.status(200).json({
-    success: true,
-    data: user,
-  });
-});
