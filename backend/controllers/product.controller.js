@@ -6,6 +6,7 @@ import ErrorResponse from '../utils/errorResponse.js';
 // @desc    POST /api/v1/product/new
 // @access  Private
 export const createProduct = asyncHandler(async (req, res, next) => {
+  req.body.user = req.user.id;
   const {name, price} = req.body;
 
   if (!name || !price) return next(new ErrorResponse('Please provide valid name and price', 400));
@@ -16,6 +17,7 @@ export const createProduct = asyncHandler(async (req, res, next) => {
   const product = await Product.create({
     name,
     price,
+    author: req.body.user,
   });
 
   res.status(200).json({
