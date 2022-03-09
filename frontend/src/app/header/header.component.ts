@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,17 @@ import { Component, Input, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
   @Input() isAuthenticated: boolean = false;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const expiredDate = localStorage.getItem('expiredToken');
+    const currentDate = Date.now();
+
+    if (expiredDate) {
+      if (currentDate > new Date(expiredDate).getTime()) {
+        localStorage.clear();
+        this.router.navigate(['']);
+      }
+    }
+  }
 }
