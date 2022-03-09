@@ -74,10 +74,10 @@ UserSchema.methods.getSignedJwtToken = function() {
   return jwt.sign({id: this._id}, process.env.JWT_SECRET, {expiresIn: process.env.JWT_EXPIRE});
 };
 
-// Match user entered pwd to hashed pwd in db
-UserSchema.methods.matchPasswor = async function(enteredPwd) {
-  return await bcrypt.compare(enteredPwd, this.password);
-};
+// // Match user entered pwd to hashed pwd in db
+// UserSchema.methods.matchPasswor = async function(enteredPwd) {
+//   return await bcrypt.compare(enteredPwd, this.password);
+// };
 
 // Generate and hash password token
 UserSchema.methods.getResetPwdToken = function() {

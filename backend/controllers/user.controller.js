@@ -35,13 +35,23 @@ export const login = asyncHandler(async (req, res, next) => {
 
 
 // @desc    User update password
-// @path    PUT /api/v1/user/pwd
+// @path    PUT /api/v1/user/updatepassword
 // @access  Private
-export async function updatePassword(req, res, next) {
-  const {oldPwd, newPwd} = req.body;
+export const updatePassword = asyncHandler(async (req, res, next) => {
+  const user = await User.findById(req.user.id).select('+password');
 
-  res.status(200).json({success: true, oldPwd: `${oldPwd}`, newPwd: `${newPwd}`});
-}
+  if (!req.body.currentPassword || !req.body.newPassword) {
+    return next(new ErrorResponse('Add both inputs to update your password', 401));
+  }
+  if (!await user.matchPassword(req.body.currentPassword)) {
+    return next(new ErrorResponse('Password is incorrect', 401));
+  }
+
+  user.password = req.body.newPassword;
+  await user.save({validateBeforeSave: true});
+
+  sendTokenResponse(user, 200, res);
+});
 
 // @desc    Get current logged in user
 // @path    POST /api/v1/auth/me
@@ -96,7 +106,7 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
 });
 
 // @desc    Reset password
-// @path    PUT /api/v1/user/resetpassword/:resettoken
+// @path    PUT /api/v1/user/resetpassword
 // @access  Private
 export const resetPassword = asyncHandler(async (req, res, next) => {
   const resetPasswordToken = crypto
@@ -119,6 +129,26 @@ export const resetPassword = asyncHandler(async (req, res, next) => {
   user.save();
 
   sendTokenResponse(user, 200, res);
+});
+
+// @desc    Update user details
+// @path    POST /api/v1/user/updatedetails
+// @access  Private
+export const updateDetails = asyncHandler(async (req, res, next) => {
+  const fieldToUpdate = {
+    name: req.body.name,
+  };
+
+
+  const user = await User.findByIdAndUpdate(req.user.id, fieldToUpdate, {
+    new: true,
+    runValidators: true,
+  });
+
+  res.status(200).json({
+    success: true,
+    data: user,
+  });
 });
 
 // Get token from model, create cookie and send resp

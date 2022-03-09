@@ -4,6 +4,7 @@ import {
   getMe,
   forgotPassword,
   resetPassword,
+  updateDetails,
 } from '../controllers/user.controller.js';
 import express from 'express';
 import {protect} from '../middleware/auth.js';
@@ -12,8 +13,9 @@ import {protect} from '../middleware/auth.js';
 const userRouter = express.Router();
 
 userRouter.post('/login', login);
-userRouter.put('/pwd', updatePassword);
 userRouter.get('/me', protect, getMe);
+userRouter.put('/updatedetails', protect, updateDetails);
+userRouter.put('/updatepassword', protect, updatePassword);
 userRouter.post('/forgotpassword', forgotPassword);
 userRouter.put('/resetpassword/:resettoken', resetPassword);
 
