@@ -111,13 +111,17 @@ export const getProducts = asyncHandler(async (req, res, next) => {
 // @path    PUT /api/v1/product/update/:id
 // @access  Private
 export const updateProduct = asyncHandler(async (req, res, next) => {
-  const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
+  let product = await Product.findById(req.params.id);
+
+  if (!product) return next(new ErrorResponse('Invalid product', 404));
+
+  if (product.user.toString() !== req.user.id && req.user.role != 'admin') {
+    return next(new ErrorResponse(`User ${req.user.id} is not authorize to update this product`, 401));
+  }
+  product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });
-
-  if (!product) return next(new ErrorResponse('Invalid product', 403));
-
   return res.status(200).json({success: true, data: product});
 });
 
@@ -125,9 +129,14 @@ export const updateProduct = asyncHandler(async (req, res, next) => {
 // @path    DELETE /api/v1/product/delete/:id
 // @access  Private
 export const deleteProduct = asyncHandler(async (req, res, next) => {
-  const product = await Product.findByIdAndDelete(req.params.id);
+  const product = await Product.findById(req.params.id);
 
   if (!product) return next(new ErrorResponse('Invalid product', 400));
 
+  if (product.user.toString() !== req.user.id && req.user.role != 'admin') {
+    return next(new ErrorResponse(`User ${req.user.id} is not authorize to update this product`, 401));
+  }
+
+  product.remove();
   return res.status(200).json({success: true, data: {}});
 });

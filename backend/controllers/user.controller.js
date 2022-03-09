@@ -43,8 +43,9 @@ export async function updatePassword(req, res, next) {
 // Get token from model, create cookie and send resp
 function sendTokenResponse(user, statusCode, res) {
   const token = user.getSignedJwtToken();
+  const expires = new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000);
   const options = {
-    expires: new Date(Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000),
+    expires,
     httpOnly: true,
   };
 
@@ -58,6 +59,7 @@ function sendTokenResponse(user, statusCode, res) {
       .json({
         success: true,
         token,
+        expires,
       });
 };
 
