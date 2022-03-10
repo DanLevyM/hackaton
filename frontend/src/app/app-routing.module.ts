@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './shared/services/auth.guard';
-
 import { ContactComponent } from './contact/contact.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DataComponent } from './data/data.component';
 import { Error404Component } from './error404/error404.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { RedirectGuard } from './shared/services/redirect.guard';
 import { WhatWeDoComponent } from './what-we-do/what-we-do.component';
 import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
 
@@ -19,7 +19,8 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    canActivate: [RedirectGuard]
   },
   {
     path: 'dashboard',
