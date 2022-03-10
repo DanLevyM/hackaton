@@ -7,6 +7,7 @@ import {
   deleteUser,
   getForms,
   deleteForm,
+  addUser,
 } from '../controllers/admin.controller.js';
 import {protect, authorize} from '../middleware/auth.js';
 
@@ -25,6 +26,7 @@ router
     .delete(protect, authorize('admin'), deleteUser);
 
 router.get('/contact', protect, authorize('admin'), getForms);
+router.post('/contact/adduser/:id', protect, authorize('admin'), addUser);
 router.delete('/contact/:id', protect, authorize('admin'), deleteForm);
 
 export default router;

@@ -4,7 +4,7 @@ import asyncHandler from '../middleware/async.js';
 import ErrorResponse from '../utils/errorResponse.js';
 import dotenv from 'dotenv';
 import crypto from 'crypto';
-import sendEmail from '../utils/send-emails.js';
+import sendForgotPasswordEmail from '../utils/send-forgot-pwd-email.js';
 import Contact from '../models/Contact.js';
 
 dotenv.config({path: '../config/config.env'});
@@ -95,7 +95,7 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
   const message = `You are receiving this email because you has requested the reset of a password. Please make a PUT request to \n\n ${resetUrl}`;
 
   try {
-    await sendEmail({
+    await sendForgotPasswordEmail({
       email: user.email,
       subject: 'Password reset token',
       message,

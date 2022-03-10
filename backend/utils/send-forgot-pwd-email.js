@@ -1,6 +1,6 @@
 import nodemailer from 'nodemailer';
 
-const sendEmail = async (options) => {
+const sendForgotPasswordEmail = async (options) => {
   // create reusable transporter object using the default SMTP transport
   const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST,
@@ -30,4 +30,4 @@ const sendEmail = async (options) => {
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 };
 
-export default sendEmail;
+export default sendForgotPasswordEmail;

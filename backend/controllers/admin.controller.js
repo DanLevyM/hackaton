@@ -1,7 +1,10 @@
+/* eslint-disable max-len */
 import User from '../models/Users.js';
 import ErrorResponse from '../utils/errorResponse.js';
 import asyncHandler from '../middleware/async.js';
 import Contact from '../models/Contact.js';
+import generator from 'generate-password';
+import sendRegisterUserEmail from '../utils/send-register-user-email.js';
 
 // @desc    Get all users
 // @path    GET /api/v1/admin/users
@@ -152,15 +155,57 @@ export const getForms = asyncHandler(async (req, res, next) => {
   });
 });
 
+// @desc    Create user from register form
+// @path    /api/v1/admin/contact/adduser/:formId
+// @access  Private/admin
+export const addUser = asyncHandler(async (req, res, next) => {
+  const contact = await Contact.findById(req.params.id);
+
+  if (!contact) return next(new ErrorResponse(`Contact ${req.params.id} not found!`, 404));
+
+  const {email, role, name} = contact;
+  const password = generator.generate({
+    length: 10,
+    numbers: true,
+  });
+
+  // Create reset url
+  console.log('req protocol', req.protocol);
+  console.log('req.get(host)', req.get('host'));
+
+  // const newPwd = `${req.protocol}://${req.get('host')}/api/v1/user/resetpassword/${resetToken}`;
+
+  try {
+    const user = await User.create({
+      email,
+      name,
+      password,
+      role,
+    });
+
+    const message = `Welcome at Wired Beauty\n\nYou are receiving this email because you requested to join our company.\n\nYou can now connect to our website with:\nYour email: ${user.email}\nYour new password: ${password}`;
+
+    await sendRegisterUserEmail({
+      email: user.email,
+      subject: 'Welcome at Wired Beauty',
+      message,
+    });
+    res.status(200).json({success: true, data: 'Email sent!'});
+  } catch (err) {
+    console.log(err);
+
+    // await user.save({validateBeforeSave: false});
+    return next(new ErrorResponse('Email could not be send'), 500);
+  }
+});
+
 // @desc    Delete a form
 // @path    /api/v1/admin/contact/:id
 // @access  Private/admin
 export const deleteForm = asyncHandler(async (req, res, next) => {
   const contact = await Contact.findByIdAndDelete(req.params.id);
 
-  if (!contact) {
-    return next(new ErrorResponse(`Contact ${req.params.id} not found!`, 404));
-  }
+  if (!contact) return next(new ErrorResponse(`Contact ${req.params.id} not found!`, 404));
 
   return res.status(200).json({
     success: true,
