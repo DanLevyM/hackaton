@@ -1,6 +1,7 @@
 import User from '../models/Users.js';
 import ErrorResponse from '../utils/errorResponse.js';
 import asyncHandler from '../middleware/async.js';
+import Contact from '../models/Contact.js';
 
 // @desc    Get all users
 // @path    GET /api/v1/admin/users
@@ -83,5 +84,87 @@ export const deleteUser = asyncHandler(async (req, res, next) => {
   return res.status(200).json({
     success: true,
     data: user,
+  });
+});
+
+// -----------------------------------------------------------------------
+// ---------------------------- REGISTER FORM ----------------------------
+// -----------------------------------------------------------------------
+// @desc    Get contact and register forms
+// @path    GET /api/v1/admin/contact
+// @access  Private/admin
+export const getForms = asyncHandler(async (req, res, next) => {
+  const reqQuery = {...req.query};
+
+  // Fields to exclude
+  const removeFields = ['sort', 'page', 'limit'];
+
+  // Loop over removeFields and delete them from reqQuery
+  removeFields.forEach((param) => delete reqQuery[param]);
+
+  // api/v1/admin/contact?registerForm=false
+  let queryStr = JSON.stringify(reqQuery);
+  queryStr = queryStr.replace(/\b(eq)\b/g, (match) => `$${match}`);
+
+  let query = Contact.find(JSON.parse(queryStr));
+
+  // Sort
+  // /api/v1/admin/contact?sort=_id
+  if (req.query.sort) {
+    const sortBy = req.query.sort.split(',').join(' ');
+    query = query.sort(sortBy);
+  } else {
+    query = query.sort('-createdAt');
+  }
+
+  // Pagination / Limit
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 10;
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+  const total = await Contact.countDocuments();
+  query = query.skip(startIndex).limit(limit);
+
+  const contacts = await query;
+
+  // Pagination result
+  const pagination = {};
+
+  if (endIndex < total) {
+    pagination.next = {
+      page: page + 1,
+      limit,
+    };
+  }
+
+  if (startIndex > 0) {
+    pagination.prev = {
+      page: page -1,
+      limit,
+    };
+  }
+
+  return res.status(200).json({
+    success: true,
+    count: contacts.length,
+    pagination,
+    data: contacts,
+  });
+});
+
+// @desc    Delete a form
+// @path    /api/v1/admin/contact/:id
+// @access  Private/admin
+export const deleteForm = asyncHandler(async (req, res, next) => {
+  const contact = await Contact.findByIdAndDelete(req.params.id);
+
+  if (!contact) {
+    return next(new ErrorResponse(`Contact ${req.params.id} not found!`, 404));
+  }
+
+  return res.status(200).json({
+    success: true,
+    data: contact,
+    message: 'Contact form deleted!',
   });
 });

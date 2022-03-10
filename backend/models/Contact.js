@@ -37,6 +37,10 @@ const ContactSchema = new mongoose.Schema({
     minlength: [2, 'Name cannot be less than 2 characters'],
     maxlength: [20, 'Name cannot be more than 20 characters'],
   },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 export default mongoose.model('Contact', ContactSchema);
