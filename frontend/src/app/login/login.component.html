@@ -3,13 +3,13 @@
         <div class="col-md-6">
             <div class="card">
                 <form [formGroup]="authForm" class="card-body cardbody-color p-lg-5">
-                    <h2 class="text-center text-dark">Authentication</h2>
                     <div class="text-center logo">
                         <img
                             src="../../assets/images/wb-logo.svg"
                             class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
                             alt="Wired beauty logo">
                     </div>
+                    <h2 class="text-center text-dark">Authentication</h2>
                     <div class="mb-3">
                         <input
                             type="text"
@@ -39,14 +39,15 @@
                     <div *ngIf="authForm?.touched && authForm?.controls?.['password']?.errors?.['minlength']" class="text-danger mb-3">
                         Password must contains at least {{ authForm?.touched && authForm?.controls?.['password']?.errors?.['minlength']?.requiredLength }} characters.
                     </div>
-                    <div class="text-center pointer">
+                    <div class="text-center pointer btn-login">
                         <button [disabled]="!authForm.valid" type="submit" class="btn btn-color px-5 w-100" (click)="login()">
                             Login
                         </button>
                     </div>
-                    <!-- <div class="back pointer" [routerLink]="['']">
-                        Go to home page
-                    </div> -->
+                    <div class="mt-3 auth-footer">
+                        <span class="back pointer mt-0 me-3" [routerLink]="['']">Go to home page</span>
+                        <a class="forgot pointer" [routerLink]="['/forgot-password']">Forgot password ?</a>
+                    </div>
                 </form>
             </div>
         </div>

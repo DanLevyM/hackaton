@@ -9,14 +9,11 @@
 
     h2 {
         color: $charcoal;
+        margin-bottom: 25px;
     }
 
     .row {
         height: 100%;
-    }
-
-    .logo {
-        margin-bottom: 25px;
     }
 
     .btn-color {
@@ -39,13 +36,36 @@
         text-decoration: none;
     }
 
-    .back {
-        text-align: center;
-        margin-top: 20px;
-        font-style: italic;
+    .auth-footer {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+
+        .back {
+            text-align: center;
+            margin-right: 10px;
+
+            &:hover {
+                color: $blueWave;
+            }
+        }
+
+        .forgot {
+            color: $blueWave;
+
+            &:hover {
+                color: $skyBlue;
+            }
+        }
+    }
+
+    .btn-login,
+    button {
+        background-color: $blueWave !important;
+        color: $white;
 
         &:hover {
-            color: $skyBlue;
+            background-color: $skyBlue !important;
         }
     }
 }
