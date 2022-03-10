@@ -1,15 +1,15 @@
 @import "../../assets/styles/colors.scss";
 
 #section1 {
-    background-color: $blueWave;
-    color: white;
-    width: 100%;
-    margin-left: 0;
-    font-size: 18px;
+  background-color: $blueWave;
+  color: white;
+  width: 100%;
+  margin-left: 0;
+  font-size: 18px;
 }
 
 #demi-img {
-    padding-left: 0;
+  padding-left: 0;
 }
 
 .marketing .col-lg-4 {
@@ -25,7 +25,7 @@
 }
 
 .featurette-divider {
-  margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+  margin: 5rem 0;
 }
 
 .featurette-heading {
@@ -33,22 +33,20 @@
 }
 
 .product {
-    background-color: $tangerine;
-    color: white;
-    padding-top: 80px;
-    padding-bottom: 100px;
-    max-height: 455px;
-    border-radius: 20px;
-   
+  background-color: $tangerine;
+  color: white;
+  padding-top: 80px;
+  padding-bottom: 100px;
+  max-height: 455px;
+  border-radius: 20px;
 }
 
 .product p {
-   margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 h2 {
-    font-weight: bold;
-
+  font-weight: bold;
 }
 
 #section4 {
@@ -57,20 +55,16 @@ h2 {
 }
 
 #bckImg{
-    background:url("../../assets/images/technology.png");
-    background-position: center;
-    height: 835px;
-    box-shadow: 60px 60px 0px 2px $skyBlue;
-}
-#bckTxt {
-    
+  background:url("../../assets/images/technology.png");
+  background-position: center;
+  height: 835px;
+  box-shadow: 60px 60px 0px 2px $skyBlue;
 }
 
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
 @media (min-width: 40em) {
-
   .featurette-heading {
     font-size: 50px;
   }
