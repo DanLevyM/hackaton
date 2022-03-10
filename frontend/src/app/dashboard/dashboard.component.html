@@ -1,1 +1,42 @@
-<p>dashboard works!</p>
+<div class="wrapper d-flex align-items-stretch">
+    <nav id="sidebar">
+        <div class="p-4 pt-5">
+            <img src="../../assets/images/wb-logo-white.svg" alt="Wired beauty logo" [routerLink]="['']" class="pointer">
+            <ul class="list-unstyled components mb-5">
+                <li class="active"><a [routerLink]="['']">About us</a></li>
+                <li><a [routerLink]="['']" >Data & Technology</a></li>
+                <li><a [routerLink]="['']" >Contact us</a></li>
+                <li><a [routerLink]="['']" >Log in</a></li>
+            </ul>
+        </div>
+        <div class="footer pointer">
+            <p>
+                Logout
+            </p>
+        </div>
+    </nav>
+    <div id="content" class="p-4 p-md-5">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light nav-burger">
+            <div class="container-fluid">
+                <button
+                    class="btn d-inline-block d-lg-none ml-auto btn-mobile"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto navbar-mobile">
+                        <li class="active"><a [routerLink]="['']">About us</a></li>
+                        <li><a [routerLink]="['']">Data & Technology</a></li>
+                        <li><a [routerLink]="['']">Contact us</a></li>
+                        <li><a [routerLink]="['']">Log in</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
