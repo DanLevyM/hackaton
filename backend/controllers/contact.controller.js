@@ -6,7 +6,7 @@ import ErrorResponse from '../utils/errorResponse.js';
 // @path    POST /api/v1/contact/send
 // @access  Public
 export const sendContactForm = asyncHandler(async (req, res, next) => {
-  const {email, title, message} = req.body;
+  const {email, role, title, message} = req.body;
 
   if (!email || !title || !message) {
     return next(new ErrorResponse('Please provide valid email, title and message', 400));
@@ -14,13 +14,15 @@ export const sendContactForm = asyncHandler(async (req, res, next) => {
 
   const contact = await Contact.create({
     email,
+    role,
     title,
     message,
+    registerForm: false,
   });
 
   res.status(200).json({
     data: contact,
-    message: 'Form sent!',
+    message: 'Contact form sent!',
     success: true,
   });
 });

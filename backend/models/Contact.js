@@ -9,6 +9,12 @@ const ContactSchema = new mongoose.Schema({
       'Please add a valid email',
     ],
   },
+  role: {
+    type: String,
+    required: true,
+    enum: ['client', 'tester'],
+    default: 'client',
+  },
   title: {
     type: String,
     required: [true, 'Please add a title'],
@@ -18,8 +24,18 @@ const ContactSchema = new mongoose.Schema({
   message: {
     type: String,
     required: [true, 'Please add a message'],
-    minlength: [20, 'Title cannot be less than 20 characters'],
-    maxlength: [300, 'Title cannot be more than 300 characters'],
+    minlength: [10, 'Message cannot be less than 10 characters'],
+    maxlength: [300, 'Message cannot be more than 300 characters'],
+  },
+  registerForm: {
+    type: Boolean,
+    required: true,
+  },
+  name: {
+    type: String,
+    required: false,
+    minlength: [2, 'Name cannot be less than 2 characters'],
+    maxlength: [20, 'Name cannot be more than 20 characters'],
   },
 });
 

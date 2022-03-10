@@ -5,8 +5,14 @@ import ErrorResponse from '../utils/errorResponse.js';
 import dotenv from 'dotenv';
 import crypto from 'crypto';
 import sendEmail from '../utils/send-emails.js';
+import Contact from '../models/Contact.js';
 
 dotenv.config({path: '../config/config.env'});
+
+
+// -----------------------------------------------------------------------
+// ---------------------------- ROUTES -----------------------------------
+// -----------------------------------------------------------------------
 
 // @desc    Login
 // @path    POST /api/v1/user/pwd
@@ -150,6 +156,35 @@ export const updateDetails = asyncHandler(async (req, res, next) => {
     data: user,
   });
 });
+
+// @desc    Send ask register form
+// @path    POST /api/v1/user/askregister
+// @access  Public
+export const askRegister = asyncHandler(async (req, res, next) => {
+  const {email, name, role, title, message} = req.body;
+
+  if (!email || !name || !title || !message) return next(new ErrorResponse('Please provide valid email, name, title and message', 400));
+
+  const contact = await Contact.create({
+    email,
+    title,
+    role,
+    message,
+    registerForm: true,
+    name,
+  });
+
+  res.status(200).json({
+    data: contact,
+    message: 'Register form sent!',
+    success: true,
+  });
+});
+
+
+// -----------------------------------------------------------------------
+// ---------------------------- UTILS ------------------------------------
+// -----------------------------------------------------------------------
 
 // Get token from model, create cookie and send resp
 function sendTokenResponse(user, statusCode, res) {
