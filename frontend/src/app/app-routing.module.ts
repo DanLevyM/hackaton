@@ -9,8 +9,7 @@ import { DataComponent } from './data/data.component';
 import { Error404Component } from './error404/error404.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { WhatWeDoComponent } from './what-we-do/what-we-do.component';
-import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 const routes: Routes = [
   {
@@ -31,20 +30,12 @@ const routes: Routes = [
     component: ContactComponent
   },
   {
-    path: 'what-we-do',
-    component: WhatWeDoComponent
-  },
-  {
     path: 'data',
     component: DataComponent
   },
   {
-    path: 'who-we-are',
-    component: WhoWeAreComponent
-  },
-  {
-    path: 'contact',
-    component: ContactComponent
+    path: 'about-us',
+    component: AboutUsComponent
   },
   {
     path: '**',

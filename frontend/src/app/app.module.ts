@@ -14,8 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
-import { WhatWeDoComponent } from './what-we-do/what-we-do.component';
-import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +27,7 @@ import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
     HeaderComponent,
     HomeComponent,
     LoginComponent,
-    WhatWeDoComponent,
-    WhoWeAreComponent
+    AboutUsComponent
   ],
   imports: [
     AppRoutingModule,
