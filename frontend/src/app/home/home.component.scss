@@ -7,6 +7,11 @@
     margin-left: 0;
     font-size: 18px;
 }
+#section2{
+    margin-top: 130px;
+    margin-bottom: 130px;
+
+}
 
 #demi-img {
     padding-left: 0;
@@ -16,6 +21,7 @@
   margin-bottom: 1.5rem;
   text-align: center;
 }
+
 .marketing h2 {
   font-weight: 400;
 }
@@ -56,14 +62,16 @@ h2 {
     margin: 20px;
 }
 
+.left-side {
+display: flex;
+}
+
 #bckImg{
     background:url("../../assets/images/technology.png");
     background-position: center;
     height: 835px;
-    box-shadow: 60px 60px 0px 2px $skyBlue;
-}
-#bckTxt {
-    
+    display: flex;
+    //box-shadow: 60px 60px 0px 2px $skyBlue;
 }
 
 /* RESPONSIVE CSS
