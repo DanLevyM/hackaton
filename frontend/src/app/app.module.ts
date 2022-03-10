@@ -10,6 +10,7 @@ import { AuthService } from './shared/services/auth.service';
 import { ContactComponent } from './contact/contact.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DataComponent } from './data/data.component';
+import { DataTechnoComponent } from './data-techno/data-techno.component';
 import { Error404Component } from './error404/error404.component';
 import { FooterComponent } from './footer/footer.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
@@ -25,6 +26,7 @@ import { ProgressComponent } from './progress/progress.component';
     ContactComponent,
     DashboardComponent,
     DataComponent,
+    DataTechnoComponent,
     Error404Component,
     FooterComponent,
     ForgotPasswordComponent,

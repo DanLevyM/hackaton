@@ -6,6 +6,7 @@ import { AuthGuard } from './shared/services/auth.guard';
 import { ContactComponent } from './contact/contact.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DataComponent } from './data/data.component';
+import { DataTechnoComponent } from './data-techno/data-techno.component';
 import { Error404Component } from './error404/error404.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HomeComponent } from './home/home.component';
@@ -46,6 +47,13 @@ const routes: Routes = [
   {
     path: 'data',
     component: DataComponent,
+    data : {
+      header: true
+    }
+  },
+  {
+    path: 'data-techno',
+    component: DataTechnoComponent,
     data : {
       header: true
     }
