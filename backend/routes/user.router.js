@@ -1,5 +1,6 @@
 import {
   login,
+  logout,
   updatePassword,
   getMe,
   forgotPassword,
@@ -14,6 +15,7 @@ import {protect} from '../middleware/auth.js';
 const userRouter = express.Router();
 
 userRouter.post('/login', login);
+userRouter.get('/logout', logout);
 userRouter.get('/me', protect, getMe);
 userRouter.put('/updatedetails', protect, updateDetails);
 userRouter.put('/updatepassword', protect, updatePassword);

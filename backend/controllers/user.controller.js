@@ -19,6 +19,8 @@ dotenv.config({path: '../config/config.env'});
 // @access  Public
 export const login = asyncHandler(async (req, res, next) => {
   const {email, password} = req.body;
+  console.log('res.cookie: ', res.cookie());
+
   if (!email || !password) {
     return next(new ErrorResponse('Please provide valid email and password', 400));
   }
@@ -181,6 +183,22 @@ export const askRegister = asyncHandler(async (req, res, next) => {
   });
 });
 
+// @desc    Log user out / clear cookie
+// @path    wGET /api/v1/user/logout
+// @access  Private
+export const logout = asyncHandler(async (req, res, next) => {
+  console.log('res.cookie: ', res.cookie());
+  res.cookie('token', 'none', {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+
+  res.status(200).json({
+    success: true,
+    message: 'Logged out',
+    data: {},
+  });
+});
 
 // -----------------------------------------------------------------------
 // ---------------------------- UTILS ------------------------------------
