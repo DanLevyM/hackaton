@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { AuthService } from '../shared/services/auth.service';
-
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -9,12 +7,8 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class ContactComponent implements OnInit {
 
-  public isAuth: boolean = false;
+  constructor() {}
 
-  constructor(private authService: AuthService) { }
-
-  ngOnInit(): void {
-    this.isAuth = this.authService.isAuthenticated();
-  }
+  ngOnInit(): void {}
 
 }

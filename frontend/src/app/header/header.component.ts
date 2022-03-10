@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,13 +9,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  @Input() isAuthenticated: boolean = false;
+  public isAuthenticated: boolean = false;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private auth: AuthService
+  ) {}
 
   ngOnInit(): void {
     const expiredDate = localStorage.getItem('expiredToken');
     const currentDate = Date.now();
+
+    this.isAuthenticated = this.auth.isAuthenticated();
 
     if (expiredDate) {
       if (currentDate > new Date(expiredDate).getTime()) {
