@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RoutesRecognized } from '@angular/router';
 
 import { AuthService } from '../shared/services/auth.service';
 
@@ -10,6 +10,7 @@ import { AuthService } from '../shared/services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   public isAuthenticated: boolean = false;
+  public isVisible: boolean = false;
 
   constructor(
     private router: Router,
@@ -19,6 +20,12 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     const expiredDate = localStorage.getItem('expiredToken');
     const currentDate = Date.now();
+
+    this.router.events.subscribe((data: any) => {
+      if (data instanceof RoutesRecognized) {
+        this.isVisible = data?.state?.root?.firstChild?.data?.['header'];
+      }
+    });
 
     this.isAuthenticated = this.auth.isAuthenticated();
 

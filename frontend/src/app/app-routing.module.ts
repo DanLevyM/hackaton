@@ -15,37 +15,61 @@ import { RedirectGuard } from './shared/services/redirect.guard';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    data : {
+      header: true
+    }
   },
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [RedirectGuard]
+    canActivate: [RedirectGuard],
+    data : {
+      header: true
+    }
   },
   {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data : {
+      header: false
+    }
   },
   {
     path: 'contact',
-    component: ContactComponent
+    component: ContactComponent,
+    data : {
+      header: true
+    }
   },
   {
     path: 'data',
-    component: DataComponent
+    component: DataComponent,
+    data : {
+      header: true
+    }
   },
   {
     path: 'about-us',
-    component: AboutUsComponent
+    component: AboutUsComponent,
+    data : {
+      header: true
+    }
   },
   {
     path: 'forgot-password',
-    component: ForgotPasswordComponent
+    component: ForgotPasswordComponent,
+    data : {
+      header: true
+    }
   },
   {
     path: '**',
-    component: Error404Component
+    component: Error404Component,
+    data : {
+      header: true
+    }
   }
 ];
 

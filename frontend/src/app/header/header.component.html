@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-sand pt-0" id="navbar-container">
+<nav *ngIf="isVisible" class="navbar navbar-expand-lg navbar-sand pt-0" id="navbar-container">
     <div class="wrapper"></div>
     <div class="container-fluid all-show">
         <div class="logo pointer" [routerLink]="['']">
