@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AboutUsComponent } from './about-us/about-us.component';
 import { AuthGuard } from './shared/services/auth.guard';
 import { ContactComponent } from './contact/contact.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -9,8 +10,6 @@ import { Error404Component } from './error404/error404.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RedirectGuard } from './shared/services/redirect.guard';
-import { WhatWeDoComponent } from './what-we-do/what-we-do.component';
-import { WhoWeAreComponent } from './who-we-are/who-we-are.component';
 
 const routes: Routes = [
   {
@@ -32,20 +31,12 @@ const routes: Routes = [
     component: ContactComponent
   },
   {
-    path: 'what-we-do',
-    component: WhatWeDoComponent
-  },
-  {
     path: 'data',
     component: DataComponent
   },
   {
-    path: 'who-we-are',
-    component: WhoWeAreComponent
-  },
-  {
-    path: 'contact',
-    component: ContactComponent
+    path: 'about-us',
+    component: AboutUsComponent
   },
   {
     path: '**',
