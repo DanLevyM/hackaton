@@ -258,6 +258,12 @@
   width: calc(100% + 24px);
   margin-left: -12px;
 
+  .text-reset i {
+    border: 2px solid $white;
+    padding: 5px;
+    border-radius: 18px;
+  }
+
   a {
     color: white;
     text-decoration: none;
