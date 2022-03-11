@@ -190,6 +190,8 @@ export const addUser = asyncHandler(async (req, res, next) => {
       subject: 'Welcome at Wired Beauty',
       message,
     });
+    await Contact.findByIdAndDelete(req.params.id);
+
     res.status(200).json({success: true, data: 'Email sent!'});
   } catch (err) {
     console.log(err);

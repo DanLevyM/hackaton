@@ -11,21 +11,27 @@ const ContactSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    required: true,
+    required: [true, 'Please add a role'],
     enum: ['client', 'tester'],
     default: 'client',
   },
-  title: {
+  phone: {
     type: String,
-    required: [true, 'Please add a title'],
-    minlength: [5, 'Title cannot be less than 5 characters'],
-    maxlength: [50, 'Title cannot be more than 50 characters'],
+    required: [true, 'Please add a phone'],
+    minlength: [8, 'Phone cannot be less than 8 characters'],
+    maxlength: [12, 'Phone cannot be more than 12 characters'],
   },
   message: {
     type: String,
-    required: [true, 'Please add a message'],
+    required: [true, 'Please add you message'],
     minlength: [10, 'Message cannot be less than 10 characters'],
     maxlength: [300, 'Message cannot be more than 300 characters'],
+  },
+  company: {
+    type: String,
+    required: false,
+    minlength: [2, 'Company cannot be less than 2 characters'],
+    maxlength: [20, 'Company cannot be more than 20 characters'],
   },
   registerForm: {
     type: Boolean,
@@ -33,7 +39,7 @@ const ContactSchema = new mongoose.Schema({
   },
   name: {
     type: String,
-    required: false,
+    required: [true, 'Please add a name'],
     minlength: [2, 'Name cannot be less than 2 characters'],
     maxlength: [20, 'Name cannot be more than 20 characters'],
   },

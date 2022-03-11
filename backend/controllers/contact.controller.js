@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import Contact from '../models/Contact.js';
 import asyncHandler from '../middleware/async.js';
 import ErrorResponse from '../utils/errorResponse.js';
@@ -6,18 +7,18 @@ import ErrorResponse from '../utils/errorResponse.js';
 // @path    POST /api/v1/contact/send
 // @access  Public
 export const sendContactForm = asyncHandler(async (req, res, next) => {
-  const {email, role, title, message} = req.body;
+  const {email, name, role, company, phone, message} = req.body;
 
-  if (!email || !title || !message) {
-    return next(new ErrorResponse('Please provide valid email, title and message', 400));
-  }
+  if (!email || !name || !company || !phone || !message || !role) return next(new ErrorResponse('Please provide valid email, name, company, phone and message', 400));
 
   const contact = await Contact.create({
     email,
+    company,
     role,
-    title,
     message,
     registerForm: false,
+    name,
+    phone,
   });
 
   res.status(200).json({

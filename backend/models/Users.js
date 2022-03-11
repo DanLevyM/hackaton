@@ -42,6 +42,18 @@ const UserSchema = new mongoose.Schema({
     maxlength: [30, 'Name cannot be more than 30 characters'],
     required: false,
   },
+  phone: {
+    type: String,
+    required: false,
+    minlength: [8, 'Phone cannot be less than 8 characters'],
+    maxlength: [12, 'Phone cannot be more than 12 characters'],
+  },
+  company: {
+    type: String,
+    required: false,
+    minlength: [2, 'Company cannot be less than 2 characters'],
+    maxlength: [20, 'Company cannot be more than 20 characters'],
+  },
   slug: String,
 });
 

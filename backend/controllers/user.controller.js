@@ -163,17 +163,18 @@ export const updateDetails = asyncHandler(async (req, res, next) => {
 // @path    POST /api/v1/user/askregister
 // @access  Public
 export const askRegister = asyncHandler(async (req, res, next) => {
-  const {email, name, role, title, message} = req.body;
+  const {email, name, role, company, phone, message} = req.body;
 
-  if (!email || !name || !title || !message) return next(new ErrorResponse('Please provide valid email, name, title and message', 400));
+  if (!email || !name || !company || !phone || !message || !role) return next(new ErrorResponse('Please provide valid email, name, company, phone and message', 400));
 
   const contact = await Contact.create({
     email,
-    title,
+    company,
     role,
     message,
     registerForm: true,
     name,
+    phone,
   });
 
   res.status(200).json({
