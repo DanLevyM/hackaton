@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RoutesRecognized } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -7,16 +6,7 @@ import { Router, RoutesRecognized } from '@angular/router';
   styleUrls: ['./footer.component.scss']
 })
 export class FooterComponent implements OnInit {
-  public isVisible: boolean = false;
+  constructor() { }
 
-  constructor(private router: Router) { }
-
-  ngOnInit(): void {
-    this.router.events.subscribe((data: any) => {
-      if (data instanceof RoutesRecognized) {
-        this.isVisible = data?.state?.root?.firstChild?.data?.['header'];
-      }
-    });
-  }
-
+  ngOnInit(): void {}
 }

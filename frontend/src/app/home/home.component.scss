@@ -1,77 +1,251 @@
 @import "../../assets/styles/colors.scss";
 
-#section1 {
-  background-color: $blueWave;
-  color: white;
-  width: 100%;
-  margin-left: 0;
-  font-size: 18px;
-}
+#home-container {
+  height: calc(100vh - 100px);
+  padding: 0 12px 0 12px;
 
-#demi-img {
-  padding-left: 0;
-}
+  // TODO remove
+  #section1 {
+    width: 100%;
+    height: 500px;
+    background-color: $skyBlue;
+  }
 
-.marketing .col-lg-4 {
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.marketing h2 {
-  font-weight: 400;
-}
-.marketing .col-lg-4 p {
-  margin-right: .75rem;
-  margin-left: .75rem;
-}
+  .marketing {
+    #section2 {
+      margin-top: 50px;
+      display: flex;
+      flex-wrap: wrap;
 
-.featurette-divider {
-  margin: 5rem 0;
-}
+      @media (max-width: 705px) {
+        flex-direction: column;
+      }
 
-.featurette-heading {
-  font-weight: bold;
-}
+      .first-bloc {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 50%;
+        padding-right: 10px;
+        margin-left: 65px;
+        margin-bottom: 50px;
 
-.product {
-  background-color: $tangerine;
-  color: white;
-  padding-top: 80px;
-  padding-bottom: 100px;
-  max-height: 455px;
-  border-radius: 20px;
-}
+        @media (max-width: 705px) {
+          flex-direction: column;
+          margin-left: 0px;
+        }
 
-.product p {
-  margin-bottom: 20px;
-}
+        @media (max-width: 1000px) {
+          width: 100%;
+        }
 
-h2 {
-  font-weight: bold;
-}
+        p {
+          font-size: 16px;
+          margin-top: 32px;
+          padding-left: 25px;
 
-#section4 {
-    justify-content: space-between;
-    margin: 20px;
-}
+          @media (max-width: 525px) {
+            font-size: 14px;
+          }
+        }
 
-#bckImg{
-  background:url("../../assets/images/technology.png");
-  background-position: center;
-  height: 835px;
-  box-shadow: 60px 60px 0px 2px $skyBlue;
-}
+        ul {
+          padding: 0 0 0 41px;
+          font-size: 15px;
 
-/* RESPONSIVE CSS
--------------------------------------------------- */
+          @media (max-width: 525px) {
+            font-size: 14px;
+          }
+        }
+      }
 
-@media (min-width: 40em) {
-  .featurette-heading {
-    font-size: 50px;
+      .second-bloc {
+        width: 40%;
+        margin: auto;
+
+        @media (max-width: 705px) {
+          width: 100%;
+        }
+
+        img {
+          display: block;
+          margin: auto;
+          max-width: 450px;
+          width: 100%;
+        }
+      }
+    }
+
+    #section3 {
+      margin-top: 50px;
+
+      h2 {
+        margin-bottom: 50px;
+      }
+
+      .allProducts {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+
+        .product {
+          width: 250px;
+          display: flex;
+          background-color: $tangerine;
+          padding: 30px 15px;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          margin: 15px 30px;
+          border-radius: 20px;
+          -webkit-border-radius: 20px;
+          -moz-border-radius: 20px;
+          -ms-border-radius: 20px;
+          -o-border-radius: 20px;
+
+          h3, p {
+            color: $white;
+          }
+        }
+      }
+    }
+
+    #section4 {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+
+      @media (max-width: 400px) {
+        justify-content: initial;
+      }
+
+      #bckImg {
+        position: relative;
+        height: 700px;
+        width: 540px;
+        margin-right: 45px;
+
+        @media (max-width: 299px) {
+          margin-left: 0;
+        }
+
+        @media (min-width: 300px) and (max-width: 335px) {
+          margin-left: 20px;
+        }
+
+        @media (min-width: 336px) and (max-width: 370px) {
+          margin-left: 50px;
+        }
+
+        @media (min-width: 371px) and (max-width: 400px) {
+          margin-left: 70px;
+        }
+
+        @media (max-width: 470px) {
+          height: 300px !important;
+          width: 140px !important;
+        }
+
+        @media (max-width: 660px) {
+          height: 500px;
+          width: 340px;
+        }
+
+        .firstImage,
+        .secondImage {
+          position: absolute;
+          height: 100%;
+          width: 100%;
+        }
+
+        .firstImage {
+          z-index: 2;
+
+          img {
+            height: 100%;
+            max-height: 660px;
+
+            @media (max-width: 500px) {
+              font-size: 14px;
+            }
+          }
+        }
+
+        .secondImage {
+          z-index: 1;
+          right: 0px;
+          background-color: $skyBlue;
+          bottom: 0px;
+          height: calc(100% - 75px);
+          width: calc(100% - 75px);
+
+          @media (max-width: 660px) {
+            right: -60px;
+            bottom: -15px;
+            height: calc(100% - 45px);
+            width: calc(100% - 50px);
+          }
+
+          @media (max-width: 470px) {
+            right: -108px;
+            bottom: -15px;
+            height: calc(100% - 40px);
+            width: calc(100% + 40px);
+          }
+        }
+      }
+
+      #bckTxt {
+        margin-top: 60px;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 20px;
+
+        @media (max-width: 500px) {
+          font-size: 14px;
+        }
+
+        > li {
+          padding: 5px 0;
+        }
+      }
+    }
   }
 }
 
-@media (min-width: 62em) {
-  .featurette-heading {
-    margin-top: 7rem;
+.cursor {
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+#footer-container {
+  color: white !important;
+  background-color: $blueWave !important;
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  #input-footer-submit{
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+
+  #btn-footer-submit{
+    border: 1px solid #86BFE5;
+    border-radius: 10px;
+    color: white;
+    background-color: #86BFE5;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
   }
 }

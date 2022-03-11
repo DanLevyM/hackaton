@@ -4,8 +4,12 @@ $navbar-height: 100px;
 
 #navbar-container {
     height: $navbar-height;
-    position: fixed;
+    position: sticky;
     width: 100%;
+
+    .container-fluid {
+        background-color: $white;
+    }
 
     a, li a {
         color: $charcoal;
