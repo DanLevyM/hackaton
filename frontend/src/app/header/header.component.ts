@@ -22,6 +22,8 @@ export class HeaderComponent implements OnInit {
     const currentDate = Date.now();
 
     this.router.events.subscribe((data: any) => {
+      this.isAuthenticated = this.auth.isAuthenticated();
+
       if (data instanceof RoutesRecognized) {
         this.isVisible = data?.state?.root?.firstChild?.data?.['header'];
       }
