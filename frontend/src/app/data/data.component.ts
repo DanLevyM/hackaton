@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ForgotPasswordService } from '../shared/services/forgot-password.service';
 
 @Component({
   selector: 'app-data',
@@ -8,40 +9,46 @@ import { Component, OnInit } from '@angular/core';
 export class DataComponent implements OnInit {
   public files: any[] = [];
 
-  constructor() { }
+  constructor(private forgotPasswordService: ForgotPasswordService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   /**
    * Trigger on file drop handler
    * @param event
    */
-  onFileDropped($event: any) {
+  public onFileDropped($event: any) {
+    console.log('1');
     this.prepareFilesList($event);
   }
 
   /**
    * Handle file from browsing
    */
-  fileBrowseHandler(files: any) {
-    console.log('Files', files);
-    // TODO make like in HTML ==> $event.target.files
-    // this.prepareFilesList(files);
+  public fileBrowseHandler(target: any) {
+    console.log('2', target);
+    this.prepareFilesList(target.files);
+    console.log('FILE TO SEND', target.files);
+    this.forgotPasswordService.test(target).subscribe(res => {
+      console.log('Res', res)
+    });
   }
 
   /**
    * Delete file from files list
    * @param index (File index)
    */
-  deleteFile(index: number) {
+  public deleteFile(index: number) {
+    console.log('3');
     this.files.splice(index, 1);
   }
 
   /**
    * Simulate the upload process
+   * @param index (File index)
    */
-  uploadFilesSimulator(index: number) {
+  public uploadFilesSimulator(index: number) {
+    console.log('4');
     setTimeout(() => {
       if (index === this.files.length) {
         return;
@@ -62,12 +69,14 @@ export class DataComponent implements OnInit {
    * Convert Files list to normal array list
    * @param files (Files List)
    */
-  prepareFilesList(files: Array<any>) {
+  public prepareFilesList(files: Array<any>) {
+    console.log('5');
     for (const item of files) {
       item.progress = 0;
       this.files.push(item);
     }
-    this.uploadFilesSimulator(0);
+    console.log('Files', files);
+    // this.uploadFilesSimulator(0);
   }
 
   /**
@@ -75,7 +84,8 @@ export class DataComponent implements OnInit {
    * @param bytes (File size in bytes)
    * @param decimals (Decimals point)
    */
-  formatBytes(bytes: any, decimals: any = 0) {
+  public formatBytes(bytes: any, decimals: any = 0) {
+    console.log('6');
     if (bytes === 0) {
       return '0 Bytes';
     }

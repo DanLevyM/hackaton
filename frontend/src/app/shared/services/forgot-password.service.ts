@@ -21,4 +21,10 @@ export class ForgotPasswordService {
       email
     });
   }
+
+  public test(file: any) {
+    return this.http.post(`${this.URL}api/v1/xlsx/post`, {
+      file
+    });
+  }
 }
