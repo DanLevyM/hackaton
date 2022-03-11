@@ -10,17 +10,19 @@ export const importXlsx = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse('Please add a file', 401));
   } else {
     console.log(req.files.file);
-    // let file = req.files.name;
-    //Use the name of the input field (i.e. "avatar") to retrieve the uploaded file
     const file = req.files.file;
 
-    //Use the mv() method to place the file in upload directory (i.e. "uploads")
     await file.mv('./uploads/' + file.name);
     const workbook = XLSX.readFile('./uploads/' + file.name);
     const sheetNames = workbook.SheetNames;
-    const json = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[2]], {
+    const sheet1 = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[0]], {
       header: 0,
     });
+    const sheet2 = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[1]], {
+      header: 0,
+    });
+    const json = sheet1.concat(sheet2);
+    console.log(json[1]);
     console.log(json);
     res.status(201).json({
       success: true,
