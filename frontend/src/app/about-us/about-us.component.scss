@@ -1,3 +1,64 @@
-#full-img {
-    width: 100%;
+
+@import "../../assets/styles/colors.scss";
+body {
+    font-size: 14px;
+  }
+  @media (min-width: 768px) {
+    body {
+      font-size: 16px;
+    }
+  }
+
+  .block1 {
+    position: relative;
+    height: 800px;
+    margin-left: 0;
+
+  }
+
+  .block2 {
+    position: absolute;
+    background-color: $blueWave;
+    height: 800px;
+    margin-top: 300px;
+  }
+  
+  .block3 {
+    position: relative;
+    text-align: center;
+  }
+  .block3 h1{
+    position: absolute;
+    top: 45%;
+    left: 34%;
+    color: white;
+    font-weight: bold;
+    font-size: 60px;
+  }
+
+  .img-techno {
+    margin: 60px;
+  }
+  #section3{
+      position: relative;
+      height: 400px;
+      background-color: #EBEFED;
+      width: 90%;
+  }
+
+  #section2{
+    position: relative;
+    height: 400px;
+    background-color: #EBEFED;
+    width: 90%;
+    margin-left: 10%;
+    margin-top:500px;
+    
+}
+
+.img-sophie{
+    position: absolute;
+    margin: -40px 0px 0px -35px;
+    width: 24%;
+    
 }
