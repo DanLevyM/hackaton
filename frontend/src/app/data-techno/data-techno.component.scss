@@ -1,12 +1,35 @@
-html {
+@import "../../assets/styles/colors.scss";
+body {
     font-size: 14px;
   }
   @media (min-width: 768px) {
-    html {
+    body {
       font-size: 16px;
     }
   }
+
+  .block1 {
+    position: relative;
+    height: 800px;
+    margin-left: 0;
+
+  }
+
+  .block2 {
+    position: absolute;
+    background-color: $blueWave;
+    height: 500px;
+  }
   
+  .block3 {
+    position: absolute;
+    text-align: center;
+
+  }
+
+  .img-techno {
+    margin: 60px;
+  }
   .container {
     max-width: 960px;
   }
@@ -29,6 +52,23 @@ html {
   
   .card-deck .card {
     min-width: 220px;
+  }
+
+  .card-header {
+      border-top-left-radius: 50px;
+      border-top-right-radius: 50px;
+  }
+
+  .card-body h3{
+    font-weight: bold;
+}
+
+.card-body h4{
+    font-weight: bold;
+}
+
+  .global-card {
+      border-radius: 20px;
   }
   
   .border-top { border-top: 1px solid #e5e5e5; }
