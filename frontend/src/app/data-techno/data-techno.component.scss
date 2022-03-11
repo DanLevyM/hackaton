@@ -22,9 +22,16 @@ body {
   }
   
   .block3 {
-    position: absolute;
+    position: relative;
     text-align: center;
-
+  }
+  .block3 h1{
+    position: absolute;
+    top: 45%;
+    left: 34%;
+    color: white;
+    font-weight: bold;
+    font-size: 60px;
   }
 
   .img-techno {
@@ -54,7 +61,7 @@ body {
     min-width: 220px;
   }
 
-  .card-header {
+  #card-color {
       border-top-left-radius: 50px;
       border-top-right-radius: 50px;
   }
@@ -69,10 +76,17 @@ body {
 
   .global-card {
       border-radius: 20px;
+      padding: 0px;
+      margin: 20px;
   }
   
   .border-top { border-top: 1px solid #e5e5e5; }
   .border-bottom { border-bottom: 1px solid #e5e5e5; }
   
   .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
+
+.container {
+    width: 100%;
+    
+}
   
