@@ -1,4 +1,4 @@
-<div id="data" class="container" uploadFile (fileDropped)="onFileDropped($event)">
+<!-- <div id="data" class="container" uploadFile (fileDropped)="onFileDropped($event)">
 	<input
 		type="file"
 		class="pointer"
@@ -60,4 +60,9 @@
 			</svg>
 		</div>
 	</div>
-</div>
+</div> -->
+
+<form action="" method="POST" enctype="multipart/form-data" (submit)="uploadFile($event)">
+	<input type="file" name="file" value="UPLOAD">
+	<input type="submit" value="CHARGER">
+</form>

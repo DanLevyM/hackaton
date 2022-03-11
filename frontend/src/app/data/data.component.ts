@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ForgotPasswordService } from '../shared/services/forgot-password.service';
+
+import { DataService } from '../shared/services/data.service';
 
 @Component({
   selector: 'app-data',
@@ -9,38 +10,52 @@ import { ForgotPasswordService } from '../shared/services/forgot-password.servic
 export class DataComponent implements OnInit {
   public files: any[] = [];
 
-  constructor(private forgotPasswordService: ForgotPasswordService) { }
+  constructor(private dataService: DataService) {}
 
   ngOnInit(): void {}
 
   /**
    * Trigger on file drop handler
-   * @param event
+   * @param event Dom element file
    */
-  public onFileDropped($event: any) {
-    this.prepareFilesList($event);
+  public onFileDropped(event: any) {
+    this.prepareFilesList(event);
+  }
+
+  /**
+   * Upload file
+   * @param event Dom element target
+   */
+  public uploadFile(event: any): void {
+    event.preventDefault();
+    this.dataService.getExcelFileData(event.target).subscribe((res: any) => {
+      if (!res?.success) {
+        console.error(res.message);
+      }
+    });
   }
 
   /**
    * Handle file from browsing
+   * @param target Dom element target
    */
-  public fileBrowseHandler(target: any) {
+  public fileBrowseHandler(target: any): void {
     this.prepareFilesList(target.files);
   }
 
   /**
    * Delete file from files list
-   * @param index (File index)
+   * @param index File index
    */
-  public deleteFile(index: number) {
+  public deleteFile(index: number): void {
     this.files.splice(index, 1);
   }
 
   /**
    * Simulate the upload process
-   * @param index (File index)
+   * @param index File index
    */
-  public uploadFilesSimulator(index: number) {
+  public uploadFilesSimulator(index: number): void {
     setTimeout(() => {
       if (index === this.files.length) {
         return;
@@ -58,23 +73,27 @@ export class DataComponent implements OnInit {
   }
 
   /**
-   * Convert Files list to normal array list
-   * @param files (Files List)
+   * Convert files list to normal array list
+   * @param files Files list
    */
-  public prepareFilesList(files: Array<any>) {
-    for (const item of files) {
-      item.progress = 0;
-      this.files.push(item);
-    }
+  public prepareFilesList(files: Array<any>): void {
+    // for (const item of files) {
+    //   item.progress = 0;
+    //   this.files.push(item);
+    // }
+    this.files = [];
+    files[0].progress = 0;
+    this.files.push(files[0]); // only one file can be added
     this.uploadFilesSimulator(0);
   }
 
   /**
-   * format bytes
-   * @param bytes (File size in bytes)
-   * @param decimals (Decimals point)
+   * Format bytes
+   * @param bytes File size in bytes
+   * @param decimals Decimals point
+   * @returns Bytes formatted
    */
-  public formatBytes(bytes: any, decimals: any = 0) {
+  public formatBytes(bytes: any, decimals: any = 0): string {
     if (bytes === 0) {
       return '0 Bytes';
     }
