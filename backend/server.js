@@ -11,6 +11,10 @@ import adminRouter from './routes/admin.router.js';
 import userRouter from './routes/user.router.js';
 import productRouter from './routes/product.router.js';
 import contactRouter from './routes/contact.router.js';
+import graphRouter from './routes/graph.router.js';
+import fileUpload from 'express-fileupload';
+import cors from 'cors';
+import bodyParser from 'body-parser';
 
 dotenv.config({path: './config/config.env'});
 connectDB();
@@ -31,6 +35,13 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Solve req.body issue
+app.use(fileUpload({
+  createParentPath: true,
+}));
+app.use(cors());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
 app.use(express.json());
 app.use(cookieParser());
 
@@ -38,6 +49,7 @@ app.use('/api/v1/admin', adminRouter);
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/product', productRouter);
 app.use('/api/v1/contact', contactRouter);
+app.use('/api/v1/xlsx', graphRouter);
 
 app.use(errorHandler);
 const server = app.listen(
