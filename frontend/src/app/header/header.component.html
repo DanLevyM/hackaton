@@ -14,30 +14,26 @@
             aria-label="Toggle navigation">
             <i class="fas fal fa-bars"></i>
         </button>
-        <div class="collapse navbar-collapse justify-content-between" id="navbarSupportedContent">
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/about-us']">About us</a>
+                <li class="nav-item active">
+                    <a class="nav-link" [routerLink]="['/about-us']"><span>About us</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['']">Data & Technology</a>
+                    <a class="nav-link" [routerLink]="['']"><span>Data & Technology</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" [routerLink]="['/contact']">Contact</a>
+                    <a class="nav-link" [routerLink]="['/contact']"><span>Contact</span></a>
+                </li>
+                <li class="nav-item">
+                    <ng-container *ngIf="!isAuthenticated">
+                        <a class="nav-link" [routerLink]="['/login']"><span>SIGN IN</span></a>
+                    </ng-container>
+                    <ng-container *ngIf="isAuthenticated">
+                        <a class="nav-link dashboard" [routerLink]="['/dashboard']"><span>DASHBOARD</span></a>
+                    </ng-container>
                 </li>
             </ul>
-            <div class="d-flex flex-column sim">
-                <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <ng-container *ngIf="!isAuthenticated">
-                            <a class="nav-link" [routerLink]="['/login']">SIGN IN</a>
-                        </ng-container>
-                        <ng-container *ngIf="isAuthenticated">
-                            <a class="nav-link dashboard" [routerLink]="['/dashboard']">DASHBOARD</a>
-                        </ng-container>
-                    </li>
-                </ul>
-            </div>
         </div>
     </div>
 </nav>
