@@ -12,7 +12,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { DataComponent } from './data/data.component';
 import { DataTechnoComponent } from './data-techno/data-techno.component';
 import { Error404Component } from './error404/error404.component';
-import { FooterComponent } from './footer/footer.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
@@ -28,7 +27,6 @@ import { ProgressComponent } from './progress/progress.component';
     DataComponent,
     DataTechnoComponent,
     Error404Component,
-    FooterComponent,
     ForgotPasswordComponent,
     HeaderComponent,
     HomeComponent,
