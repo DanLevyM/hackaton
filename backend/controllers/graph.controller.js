@@ -14,10 +14,10 @@ export const importXlsx = asyncHandler(async (req, res, next) => {
     await file.mv('./uploads/' + file.name);
     const workbook = XLSX.readFile('./uploads/' + file.name);
     const sheetNames = workbook.SheetNames;
-    const sheet1 = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[0]], {
+    const sheet1 = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[1]], {
       header: 0,
     });
-    const sheet2 = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[1]], {
+    const sheet2 = XLSX.utils.sheet_to_json(workbook.Sheets[sheetNames[2]], {
       header: 0,
     });
     const json = sheet1.concat(sheet2);

@@ -62,7 +62,73 @@
 	</div>
 </div> -->
 
-<form action="" method="POST" enctype="multipart/form-data" (submit)="uploadFile($event)">
+<form method="POST" enctype="multipart/form-data" (submit)="uploadFile($event)" >
 	<input type="file" name="file" value="UPLOAD">
-	<input type="submit" value="CHARGER">
+	<input type="submit" value="UPLOAD">
 </form>
+
+<div [formGroup]="dataForm">
+	<p>Veuillez choisir la meilleure méthode pour vous contacter :</p>
+	<div class="bloc1">
+		<div>
+			<input type="radio" id="skin" name="tab" value="skin" formControlName="tab">
+			<label for="skin">Skin biosense</label>
+		</div>
+
+		<div>
+			<input type="radio" id="perception" name="tab" value="perception" formControlName="tab">
+			<label for="perception">Perception</label>
+		</div>
+	</div>
+	DEBUG >>>{{dataForm.controls['tab'].value}}
+	<div
+		class="bloc2"
+		[hidden]="dataForm.controls['tab'].value === 'perception'">
+		<div>
+			<input type="radio" id="moisturizing" name="option" value="moisturizing" formControlName="option">
+			<label for="moisturizing">Moisturizing</label>
+		</div>
+
+		<div>
+			<input type="radio" id="antioxidant" name="option" value="antioxidant" formControlName="option">
+			<label for="antioxidant">Antioxidant</label>
+		</div>
+
+		<div>
+			<input type="radio" id="barrier" name="option" value="barrier" formControlName="option">
+			<label for="barrier">Barrier</label>
+		</div>
+	</div>
+	<div class="bloc3">
+		<label for="pet-select">Choose data count to export:</label>
+		<select name="data" id="data-select" formControlName="count">
+			<option value="10">10</option>
+			<option value="20">20</option>
+			<option value="30">30</option>
+			<option value="40">40</option>
+			<option value="50">50</option>
+			<option value="60">60</option>
+			<option value="70">70</option>
+			<option value="80">80</option>
+			<option value="90">90</option>
+			<option value="100">100</option>
+		</select>
+	</div>
+	<div>
+	  <button
+	  	[disabled]="!dataForm.valid && !uploadFileForm.valid"
+		type="button pointer"
+		(click)="generatePdfFile()">Upload pdf</button>
+	</div>
+
+	<div>
+		<pre>
+			{{uploadFileForm.value | json}}
+			{{uploadFileForm.valid | json}}
+		</pre>
+		<pre>
+			{{dataForm.value | json}}
+			{{dataForm.valid | json}}
+		</pre>
+	</div>
+  </div>

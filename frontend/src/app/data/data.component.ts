@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { DataService } from '../shared/services/data.service';
 
@@ -9,8 +10,31 @@ import { DataService } from '../shared/services/data.service';
 })
 export class DataComponent implements OnInit {
   public files: any[] = [];
+  public excelFilesData: any[] = [];
+  public uploadFileForm: FormGroup;
 
-  constructor(private dataService: DataService) {}
+  public dataForm: FormGroup;
+
+  public skinBioscenseList: any[] = [];
+  public skinBioscenseData: any[] = [];
+
+  public perceptionList: any[] = [];
+  public perceptionData: any[] = [];
+
+  constructor(
+    private dataService: DataService,
+    private fb: FormBuilder
+  ) {
+    this.uploadFileForm = this.fb.group({
+      file: ['', Validators.required]
+    });
+
+    this.dataForm = this.fb.group({
+      tab: ['', [Validators.required]],
+      option: ['', [Validators.required]],
+      count: ['', [Validators.required]]
+    });
+  }
 
   ngOnInit(): void {}
 
@@ -23,16 +47,49 @@ export class DataComponent implements OnInit {
   }
 
   /**
+   * Generate pdf file
+   */
+  public generatePdfFile(): void {
+    console.log('Data form', this.dataForm);
+    const tab = this.dataForm?.value?.tab;
+    const option = this.dataForm?.value?.option;
+    const count = this.dataForm?.value?.count;
+
+    if (tab && tab === 'perception') {
+      this.perceptionList = this.perceptionList
+    } else if (tab && tab === 'skin') {
+
+    } else {
+      console.error('Tab option not implemented');
+    }
+  }
+
+  /**
    * Upload file
    * @param event Dom element target
    */
   public uploadFile(event: any): void {
     event.preventDefault();
-    this.dataService.getExcelFileData(event.target).subscribe((res: any) => {
-      if (!res?.success) {
-        console.error(res.message);
-      }
-    });
+    const excelFileSubscription = this.dataService.getExcelFileData(event.target);
+
+    if (excelFileSubscription) {
+      this.dataService.getExcelFileData(event.target).subscribe((res: any) => {
+        if (!res?.success) {
+          console.error(res.message);
+        }
+
+        console.log('Data', res.data)
+
+        if (res?.data.length === 2500) {
+          this.uploadFileForm.value.file = true;
+          this.excelFilesData = res.data;
+          this.skinBioscenseList = this.excelFilesData.slice(0, 2400);
+          this.perceptionList = this.excelFilesData.slice(2400, 2500);
+        } else {
+          console.error('Only one file is supported for now');
+        }
+      });
+    }
   }
 
   /**
