@@ -39,20 +39,62 @@ body {
   .img-techno {
     margin: 60px;
   }
+
+  #sect1 {
+    margin-top: 140px;
+    margin-bottom: 50px;
+    position: relative;
+
+    h2 {
+      margin-bottom: 50px;
+    }
+
+    .allIdea {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+
+      .idea {
+        width: 350px;
+        height: 300px;
+        display: flex;
+        background-color: $tangerine;
+        padding: 30px 15px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 15px 30px;
+        border-radius: 20px;
+        -webkit-border-radius: 20px;
+        -moz-border-radius: 20px;
+        -ms-border-radius: 20px;
+        -o-border-radius: 20px;
+
+        h3, p {
+          color: $white;
+        }
+      }
+    }
+  }
+  h3 {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 25px;
+    }
   #section3{
       position: relative;
       height: 400px;
-      background-color: #EBEFED;
+      background-color: $sandDune;
       width: 90%;
+      margin-top: 70px;
   }
 
   #section2{
     position: relative;
     height: 400px;
-    background-color: #EBEFED;
+    background-color: $sandDune;
     width: 90%;
     margin-left: 10%;
-    margin-top:500px;
     
 }
 
@@ -62,3 +104,74 @@ body {
     width: 24%;
     
 }
+
+.img-stan{
+    position: absolute;
+    margin: -40px 0px 0px -35px;
+    width: 24%;
+    right: 0;
+    
+}
+
+#sect4 {
+    margin-top: 50px;
+
+    .allColab {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      flex-direction: row;
+
+      .colab {
+        width: 250px;
+        display: flex;
+        padding: 30px 15px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 15px 30px;
+
+        h3, p {
+          color: $charcoal;
+        }
+      }
+    }
+  }
+  #sect5 {
+    margin-top: 50px;
+
+    .allValues {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      flex-direction: row;
+
+      .value {
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border-right: 20px;
+        border-color: $tangerine;
+
+        .circle {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            width: 100px;
+            background-color: $blueWave;
+            border-radius: 150px;
+            font-size: 30px;
+            color: $white;
+            font-weight: bold;
+          }
+
+        h3, p {
+          color: $charcoal;
+        }
+      }
+    }
+  }
