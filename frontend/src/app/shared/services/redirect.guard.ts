@@ -1,4 +1,4 @@
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -7,11 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RedirectGuard implements CanActivate {
-
-  constructor(private router: Router) {
-
-  }
-
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
