@@ -9,6 +9,33 @@
 #login-container {
     height: 100vh;
 
+    .email-bloc,
+    .password-bloc {
+        input {
+            border-radius: 8px;
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            -ms-border-radius: 8px;
+            -o-border-radius: 8px;
+        }
+    }
+
+    .password-bloc {
+        .input-bloc {
+            position: relative;
+        }
+
+        div a {
+            color: $charcoal;
+        }
+
+        .eye-button {
+            position: absolute;
+            top: 7px;
+            right: 10px;
+        }
+    }
+
     form {
         padding: 30px 48px !important
     }
@@ -25,7 +52,6 @@
     .btn-color {
         background-color: $charcoal;
         color: $white;
-
     }
 
     .profile-image-pic {
@@ -35,15 +61,28 @@
     }
 
     .cardbody-color {
-        background-color: $sandDune;
+        border: 1px solid $sandDune;
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -o-border-radius: 8px;
+
+        @media (max-width: 450px) {
+            padding: 30px 10px !important
+        }
     }
 
     a {
         text-decoration: none;
+
+        @media (max-width: 400px) {
+            font-size: 13px;
+        }
     }
 
     .auth-footer {
-        margin-top: 10px;
+        margin-top: 30px !important;
         display: flex;
         justify-content: center;
 
@@ -65,6 +104,10 @@
         }
     }
 
+    .card {
+        border: none;
+    }
+
     .btn-login,
     button {
         background-color: $blueWave !important;
@@ -73,9 +116,19 @@
         &:hover {
             background-color: $skyBlue !important;
         }
+
+        border-radius: 8px;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        -ms-border-radius: 8px;
+        -o-border-radius: 8px;
     }
 }
 
 .pointer {
     cursor: pointer;
+}
+
+.bold {
+    font-weight: bold;
 }

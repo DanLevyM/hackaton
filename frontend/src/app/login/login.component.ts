@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -10,6 +10,8 @@ import { AuthService } from '../shared/services/auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
+  @ViewChild("passwordRef", { static: true }) passwordReference: any;
+
   public authForm: FormGroup;
 
   constructor(
@@ -39,5 +41,17 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       }
     });
+  }
+
+  /**
+   * Display or not password value
+   */
+  public changePasswordVisibility(): void {
+    const type = this.passwordReference.nativeElement.type;
+    if (type === 'password') {
+      this.passwordReference.nativeElement.type = 'text';
+    } else {
+      this.passwordReference.nativeElement.type = 'password';
+    }
   }
 }

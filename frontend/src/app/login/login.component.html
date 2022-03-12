@@ -6,11 +6,15 @@
                     <div class="text-center logo">
                         <img
                             src="../../assets/images/wb-logo.svg"
-                            class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                            class="img-fluid profile-image-pic rounded-circle my-3 mb-0"
                             alt="Wired beauty logo">
                     </div>
-                    <h2 class="text-center text-dark">Authentication</h2>
-                    <div class="mb-3">
+                    <div>
+                        <h2 class="text-center text-dark bold">Login In</h2>
+                        <p class="text-center">Enter your email and password below</p>
+                    </div>
+                    <div class="mb-4 email-bloc">
+                        <label for="email" class="bold mb-2">EMAIL</label>
                         <input
                             type="text"
                             class="form-control"
@@ -25,13 +29,23 @@
                     <div *ngIf="authForm?.touched && authForm?.controls?.['email']?.errors?.['email']" class="text-danger mb-3">
                         Email format not respected.
                     </div>
-                    <div class="mb-3">
-                        <input
-                            type="password"
-                            class="form-control"
-                            id="password"
-                            placeholder="Enter password ..."
-                            formControlName="password">
+                    <div class="mb-4 password-bloc">
+                        <div class="d-flex justify-content-between">
+                            <label for="password" class="bold mb-2">PASSWORD</label>
+                            <a class="forgot pointer" [routerLink]="['/forgot-password']">Forgot password ?</a>
+                        </div>
+                        <div class="input-bloc">
+                            <input
+                                type="password"
+                                class="form-control"
+                                id="password"
+                                #passwordRef
+                                placeholder="Enter password ..."
+                                formControlName="password">
+                            <span class="eye-button pointer" (click)="changePasswordVisibility()">
+                                <i class="fas fa-eye"></i>
+                            </span>
+                        </div>
                     </div>
                     <div *ngIf="authForm?.touched && authForm?.controls?.['password']?.errors?.['required']" class="text-danger mb-3">
                         Password is required.
@@ -45,8 +59,7 @@
                         </button>
                     </div>
                     <div class="mt-3 auth-footer">
-                        <span class="back pointer mt-0 me-3" [routerLink]="['']">Go to home page</span>
-                        <a class="forgot pointer" [routerLink]="['/forgot-password']">Forgot password ?</a>
+                        <span class="back pointer mt-0 me-3" [routerLink]="['']">Back to home</span>
                     </div>
                 </form>
             </div>
