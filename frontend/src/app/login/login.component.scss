@@ -1,5 +1,11 @@
 @import "../../assets/styles/colors.scss";
 
+::ng-deep {
+    #navbar-container.userNotLogged {
+        display: none;
+    }
+}
+
 #login-container {
     height: 100vh;
 
