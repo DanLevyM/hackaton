@@ -1,7 +1,11 @@
-# hackaton
+# Wired Beauty - MEAN Project for 2022 Hackaton
 
-# Wired Beauty
+## Frontend - Angular
 
-## MEAN Mongodg - Express - Angular - NodeJS
+ng serve
 
-### Mailer Mailtrap.io + nodemailer
+## Backend - NodeJS MongoDB Express
+
+npm start
+
+## Mailer Mailtrap.io + nodemailer

@@ -7,7 +7,7 @@
     "name": "admin1",
     "createdAt": "2022-03-08T15:19:04.750Z",
     "slug": "admin1"
-  },
+    },
   {
     "_id": "6228a774926b58cf2deb85a1",
     "email": "admin2@gmail.com",
@@ -33,7 +33,9 @@
     "role": "client",
     "name": "client1",
     "createdAt": "2022-03-08T15:19:04.750Z",
-    "slug": "client1"
+    "slug": "client1",
+    "company": "company 1",
+    "phone": "0102030405"
   },
   {
     "_id": "6228a774926b58cf2deb85a5",
@@ -42,7 +44,10 @@
     "role": "client",
     "name": "client2",
     "createdAt": "2022-03-07T15:19:04.750Z",
-    "slug": "client2"
+    "slug": "client2",
+    "company": "company 2",
+    "phone": "0102030405"
+
   },
   {
     "_id": "6228a774926b58cf2deb85a6",
@@ -51,7 +56,10 @@
     "role": "client",
     "name": "client3",
     "createdAt": "2022-03-01T15:19:04.750Z",
-    "slug": "client3"
+    "slug": "client3",
+    "company": "company 3",
+    "phone": "0102030405"
+
   },
   {
     "_id": "6228a774926b58cf2deb85a7",
@@ -60,7 +68,10 @@
     "role": "client",
     "name": "client4",
     "createdAt": "2022-03-02T15:19:04.750Z",
-    "slug": "client4"
+    "slug": "client4",
+    "company": "company 4",
+    "phone": "0102030405"
+
   },
   {
     "_id": "6228a774926b58cf2deb85a8",
@@ -69,7 +80,10 @@
     "role": "client",
     "name": "client5",
     "createdAt": "2022-03-03T15:19:04.750Z",
-    "slug": "client5"
+    "slug": "client5",
+    "company": "company 5",
+    "phone": "0102030405"
+
   },
   {
     "_id": "6228a774926b58cf2deb85a9",
@@ -78,7 +92,10 @@
     "role": "tester",
     "name": "tester1",
     "createdAt": "2022-03-08T15:19:04.750Z",
-    "slug": "tester1"
+    "slug": "tester1",
+    "company": "company 6",
+    "phone": "0102030405"
+
   },
   {
     "_id": "6228a774926b58cf2deb85a0",
@@ -87,6 +104,8 @@
     "role": "tester",
     "name": "tester2",
     "createdAt": "2022-03-03T15:19:04.750Z",
-    "slug": "tester2"
+    "slug": "tester2",
+    "company": "company 7",
+    "phone": "0102030405"
   }
 ]
