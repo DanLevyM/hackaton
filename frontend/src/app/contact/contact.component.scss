@@ -1,70 +1,215 @@
 @import "../../assets/styles/colors.scss";
 
 #contact-container {
-    height: 100vh;
+  padding-left: 50px;
 
-    .card {
-        margin: 35px;
-    }
-    h2 {
-        color: $charcoal;
-    }
+  @media (max-width: 1000px) {
+    flex-direction: column;
+    padding: 0 30px;
+    margin-left: 0px !important;
+  }
 
-    .row {
-        height: 90%;
+  .contact-bloc {
+    @media (max-width: 1000px) {
+      width: 100%;
+      justify-content: center;
     }
+  }
 
-    #message {
-        height: 150px;
+  .title {
+    @media (max-width: 1000px) {
+      padding: 0 !important;
     }
-    
-    .cardbody-color {
-        background-color: $sandDune;
-    }
+  }
 
-    #id {
-        margin-right: 25px;
+  .bloc1 {
+    @media (max-width: 1000px) {
+      padding: 0 !important;
     }
-}
-#form-contact {
-    margin: 25px;
-}
+  }
 
-p {
+  .bloc2 {
+    @media (max-width: 1000px) {
+      padding: 0 !important;
+    }
+  }
+
+  .bloc3 {
+    @media (max-width: 1000px) {
+      padding: 0 !important;
+    }
+  }
+
+  .bloc4 {
+    @media (max-width: 1000px) {
+      padding: 0 !important;
+    }
+  }
+
+  #form-contact {
+    padding: 0
+  }
+
+  p {
     margin: 40px;
-}
-    
-h1 {
-    font-weight: bold;
-}
+    font-size: 18px;
+  }
 
-#btn-sub {
+  h1 {
+    font-weight: bold;
+  }
+
+  #btn-sub {
     background-color: $blueWave;
     color: $white;
     width: 100%;
     height: 47px;
     font-weight: bold;
     border-radius: 10px;
-}
+  }
 
-label {
+  label {
     font-weight: bold;
     font-size: 18px;
-}
+  }
 
-input {
+  input {
     background-color: $sandDune;
     border-radius: 10px;
     border-color: $sandDune;
-}
+  }
 
-textarea {
+  textarea {
     background-color: $sandDune;
     border-radius: 10px;
     border-color: $sandDune;
     height: 150px;
-}
-#right-side {
+  }
+
+  #right-side {
     margin: 0;
     padding: 0;
+
+    @media (max-width: 1000px) {
+      width: 100%;
+      margin-top: 30px;
+      height: 400px;
+    }
+  }
+
+}
+
+#footer-container {
+  color: white !important;
+  background-color: $blueWave !important;
+  width: calc(100% + 24px);
+  margin-left: -12px;
+
+  .text-reset i {
+    border: 2px solid $white;
+    padding: 5px;
+    border-radius: 18px;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  #input-footer-submit{
+    border: 1px solid white;
+    border-radius: 5px;
+  }
+
+  #btn-footer-submit{
+    border: 1px solid #86BFE5;
+    border-radius: 10px;
+    color: white;
+    background-color: #86BFE5;
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .menus {
+    display: flex;
+    justify-content: space-between;
+    padding: 50px 35px;
+    flex-wrap: wrap;
+
+    @media (max-width: 391px) {
+      justify-content: center;
+      padding: 25px 35px !important;
+    }
+
+    @media (max-width: 391px) {
+      .copyright-mobile {
+        display: initial !important;
+      }
+
+      .copyright-desktop {
+        display: none;
+      }
+    }
+
+    .informations {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .newsletter {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding-left: 0;
+
+      @media (max-width: 391px) {
+        button {
+          margin: 0 !important;
+          margin-top: 10px !important;
+        }
+
+        div:first-child {
+          display: flex;
+          flex-direction: column;
+          text-align: center !important;
+        }
+
+        div:last-child {
+          text-align: center !important;
+        }
+      }
+
+      div:first-child {
+        text-align: left;
+      }
+
+      div:last-child {
+        text-align: left;
+        margin-top: 12px;
+      }
+    }
+
+    div {
+      padding: 0 10px;
+    }
+  }
+
+  .copyright {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px 0;
+
+    .logo {
+      margin-bottom: 25px;
+    }
+
+    span {
+      font-size: 14px;
+    }
+  }
 }
