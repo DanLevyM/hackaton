@@ -16,6 +16,7 @@ dotenv.config({path: './config/config.env'});
 
 import Product from './models/Product.js';
 import User from './models/Users.js';
+import Contact from './models/Contact.js';
 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
@@ -24,11 +25,13 @@ mongoose.connect(process.env.MONGO_URI, {
 
 const products = JSON.parse(fs.readFileSync(`${__dirname}/__fixtures/products.json`, 'utf-8'));
 const users = JSON.parse(fs.readFileSync(`${__dirname}/__fixtures/users.json`, 'utf-8'));
+const contacts = JSON.parse(fs.readFileSync(`${__dirname}/__fixtures/contacts.json`, 'utf-8'));
 
 const importData = async () => {
   try {
     await Product.create(products);
     await User.create(users);
+    await Contact.create(contacts);
 
     console.log('Data imported...'.green.inverse);
     process.exit();
@@ -41,6 +44,7 @@ const deleteData = async () => {
   try {
     await Product.deleteMany();
     await User.deleteMany();
+    await Contact.deleteMany();
 
     console.log('Data destroyed...'.red);
     process.exit();

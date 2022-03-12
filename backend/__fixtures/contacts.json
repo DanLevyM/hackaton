@@ -1,0 +1,29 @@
+[
+  {
+    "email": "clientcontact1@gmail.com",
+    "role": "client",
+    "name": "client Contact 1",
+    "phone": "0102030405",
+    "message": "I want to create an account!",
+    "company": "Company 1 contact",
+    "registerForm": "true"
+  },
+  {
+    "email": "clientcontact2@gmail.com",
+    "role": "client",
+    "name": "client Contact 2",
+    "phone": "0102030405",
+    "message": "I want to create an account!",
+    "company": "Company 2 contact",
+    "registerForm": "true"
+  },
+  {
+    "email": "clientcontact3@gmail.com",
+    "role": "client",
+    "name": "client Contact 3",
+    "phone": "0102030405",
+    "message": "I want to create an account!",
+    "company": "Company 3 contact",
+    "registerForm": "true"
+  }
+]
