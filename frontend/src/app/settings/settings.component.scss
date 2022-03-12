@@ -1,36 +1,48 @@
 @import "../../assets/styles/colors.scss";
 
-#contact-container {
+#settings-container {
     height: 100vh;
 
     .card {
         margin: 35px;
     }
+
+    #form-settings {
+        padding: 35px;
+        padding-right: 100px;
+        padding-right: 150px;
+    }
+
     h2 {
         color: $charcoal;
+        margin-bottom: 45px;
+        font-weight: bold;
+        font-size: 20px;
     }
 
     .row {
-        height: 90%;
+        height: 80%;
     }
 
-    #message {
-        height: 200px;
-
+    label {
+        font-size: 15px;
     }
 
     .btn-submit {
         background-color: $blueWave;
         color: $white;
         width: 100%;
-    }
-
-    .cardbody-color {
-        background-color: $sandDune;
+        border-radius: 10px;
+        margin-top: 30px;
+        font-weight: bold;
     }
 
     #id {
         margin-right: 25px;
+    }
+    input {
+        height: 50px;
+        border-radius: 5px;
     }
 
 } 
