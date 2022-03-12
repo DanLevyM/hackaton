@@ -26,6 +26,7 @@
       height: 100%;
       top: 0;
       left: 0;
+      background-color: $ironstone;
     }
 
     label {
@@ -154,12 +155,26 @@
 
   button {
     transition: .3s all ease;
+    background-color: $blueWave;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    width: 90%;
 
     &:hover, &:focus {
       text-decoration: none !important;
       outline: none !important;
       box-shadow: none !important;
     }
+  }
+
+  #data-select {
+    background-color: $sandDune;
+    border-radius: 5px;
+    border-color: $sandDune;
+    padding: 5px;
+    width: 80px;
+    text-align: center;
   }
 
   h1, h2, h3, h4, h5,
