@@ -11,6 +11,7 @@ import { AuthService } from '../shared/services/auth.service';
 export class HeaderComponent implements OnInit {
   public isAuthenticated: boolean = false;
   public isVisible: boolean = false;
+  public disabledNavbar: boolean = false;
 
   constructor(
     private router: Router,
@@ -23,6 +24,7 @@ export class HeaderComponent implements OnInit {
 
     this.router.events.subscribe((data: any) => {
       this.isAuthenticated = this.auth.isAuthenticated();
+      this.disabledNavbar = (!this.isAuthenticated && this.router.url.indexOf('login') === -1);
 
       if (data instanceof RoutesRecognized) {
         this.isVisible = data?.state?.root?.firstChild?.data?.['header'];

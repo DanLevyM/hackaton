@@ -1,6 +1,6 @@
 <nav
     *ngIf="isVisible"
-    [ngClass]="{'userLogged': isAuthenticated, 'userNotLogged': !isAuthenticated}"
+    [ngClass]="{'userLogged': disabledNavbar, 'userNotLogged': !disabledNavbar}"
     class="navbar navbar-expand-lg navbar-sand pt-0" id="navbar-container">
     <div class="wrapper"></div>
     <div class="container-fluid all-show">
