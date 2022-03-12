@@ -1,93 +1,335 @@
 @import "../../assets/styles/colors.scss";
-body {
-    font-size: 14px;
-  }
-  @media (min-width: 768px) {
-    body {
-      font-size: 16px;
-    }
-  }
+
+#data-techno {
+  width: calc(100% + 12px);
 
   .block1 {
-    position: relative;
-    height: 800px;
-    margin-left: 0;
-
+    background-color: $blueWave;
   }
 
   .block2 {
-    position: absolute;
-    background-color: $blueWave;
-    height: 500px;
-  }
-  
-  .block3 {
+    max-width: 1100px;
+    max-height: 600px;
+    margin: auto;
+    padding: 0;
     position: relative;
-    text-align: center;
-  }
-  .block3 h1{
-    position: absolute;
-    top: 45%;
-    left: 34%;
-    color: white;
-    font-weight: bold;
-    font-size: 60px;
+
+    .title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: $white;
+
+      h1 {
+        font-weight: bold;
+        text-align: center;
+      }
+    }
   }
 
   .img-techno {
-    margin: 60px;
-  }
-  .container {
-    max-width: 960px;
-  }
+    height: 100%;
+    width: 100%;
+    max-height: 600px;
+    padding: 0 75px;
+    margin-bottom: -50px;
+    margin-top: 50px;
 
-  .round {
-      text-align: center;
-  }
-
-  .round p {
-    margin: 30px 100px;
-  }
-  
-  .global-round {
-    padding: 0px 30px;
+    @media (max-width: 500px) {
+      margin-bottom: 0px;
+      margin-top: 0px;
+      padding: 15px 30px;
+    }
   }
 
   .pricing-header {
-    max-width: 700px;
-  }
-  
-  .card-deck .card {
-    min-width: 220px;
+    margin-top: 100px;
+    padding: 0 150px;
+
+    @media (max-width: 400px) {
+      margin-top: 35px;
+      padding: 0 10px;
+    }
+
+    @media (min-width: 401px) and (max-width: 500px) {
+      margin-top: 50px;
+    }
+
+    @media (max-width: 750px) {
+      padding: 0 30px;
+    }
+
+    @media (min-width: 751px) and (max-width: 1000px) {
+      padding: 0 75px;
+    }
+
+    h2 {
+      font-weight: bold;
+      margin-bottom: 45px;
+      padding: 0 30px;
+
+      @media (max-width: 400px) {
+        font-size: 20px;
+        margin-bottom: 25px;
+      }
+
+      @media (min-width: 401px) and (max-width: 750px) {
+        margin-bottom: 30px
+      }
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 50px;
+
+      @media (max-width: 1000px) {
+        margin-bottom: 30px;
+      }
+
+      @media (max-width: 400px) {
+        font-size: 14px;
+      }
+
+      @media (min-width: 401px) and (max-width: 750px) {
+        font-size: 16px;
+      }
+    }
   }
 
-  #card-color {
-      border-top-left-radius: 50px;
-      border-top-right-radius: 50px;
+  .blocs {
+    padding: 0 50px;
+
+    .bloc-description {
+      height: 250px;
+      width: 250px;
+      padding: 0 15px;
+      margin: 10px 0;
+
+      .first-bloc,
+      .second-bloc {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 50%;
+        padding: 0 15px;
+      }
+
+      .first-bloc {
+        color: $white;
+        background-color: $skyBlue;
+        font-size: 30px;
+      font-weight: bold;
+      }
+
+      .second-bloc {
+        font-size: 14px;
+        text-align: center;
+        background-color: $sandDune;
+      }
+    }
   }
 
-  .card-body h3{
-    font-weight: bold;
+  .shanghai-bloc {
+    margin-top: 75px;
+    padding: 0 30px;
+
+    img {
+      @media (max-width: 700px) {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 400px) {
+      margin-top: 50px;
+      padding: 0 15px;
+    }
+  }
+
+  .wired-beauty {
+    margin-top: 75px;
+
+    h2 {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 50px;
+      padding: 0 30px;
+
+      @media (max-width: 400px) {
+        font-size: 20px;
+      }
+    }
+
+    .global-round {
+      .round {
+        width: 200px;
+        margin: 0 20px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        .circle {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 150px;
+          width: 150px;
+          background-color: $blueWave;
+          border-radius: 150px;
+          font-size: 30px;
+          color: $white;
+          font-weight: bold;
+        }
+
+        .content {
+          padding-top: 30px;
+          display: flex;
+          flex-direction: column;
+
+          p {
+            font-size: 14px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  .studies-header {
+    margin-top: 50px;
+    padding: 0 150px;
+
+    @media (max-width: 400px) {
+      padding: 0 10px;
+    }
+
+    @media (max-width: 750px) {
+      padding: 0 30px;
+    }
+
+    @media (min-width: 751px) and (max-width: 1000px) {
+      padding: 0 75px;
+    }
+
+    h2 {
+      font-weight: bold;
+      margin-bottom: 45px;
+      padding: 0 30px;
+
+      @media (max-width: 400px) {
+        font-size: 20px;
+        margin-bottom: 25px;
+      }
+
+      @media (min-width: 401px) and (max-width: 750px) {
+        margin-bottom: 30px
+      }
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 75px;
+
+      @media (max-width: 1000px) {
+        margin-bottom: 50px;
+      }
+
+      @media (max-width: 400px) {
+        font-size: 14px;
+      }
+
+      @media (min-width: 401px) and (max-width: 750px) {
+        font-size: 16px;
+      }
+    }
+  }
+
+  .studies-services {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    .card-header {
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+    }
+
+    .card-deck,
+    .card,
+    .card-body {
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+      border-bottom-left-radius: 18px;
+      border-bottom-right-radius: 18px;
+    }
+
+    .card-header {
+      background-color: $blueWave;
+    }
+
+    .card-deck {
+      margin: 0 50px;
+      width: 300px;
+      box-shadow: 0px 2px 11px 1px rgba(39, 43, 45, 0.1);
+
+      &.card-deck2 .card-header {
+        background-color: #F3F4F3;
+      }
+
+      &.card-deck4 .card-header {
+        background-color: $tangerine;
+      }
+
+      &.card-deck5 .card-header {
+        background-color: #A5B2BA;
+      }
+    }
+
+    .card {
+      border: 0;
+    }
+
+    .card-body {
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .plus {
+        font-weight: normal;
+        font-size: 12px;
+        display: block;
+      }
+
+      p, li {
+        font-size: 14px;
+      }
+
+      li {
+        padding: 2px 0;
+      }
+
+      p {
+        margin-top: 15px;
+      }
+
+      .validate-icon {
+        border: 1px solid $blueWave;
+        border-radius: 18px;
+        padding: 2px;
+        color: $white;
+        background-color: $blueWave;
+        margin-right: 10px;
+      }
+    }
+  }
 }
 
-.card-body h4{
-    font-weight: bold;
+.bold {
+  font-weight: bold;
 }
 
-  .global-card {
-      border-radius: 20px;
-      padding: 0px;
-      margin: 20px;
-  }
-  
-  .border-top { border-top: 1px solid #e5e5e5; }
-  .border-bottom { border-bottom: 1px solid #e5e5e5; }
-  
-  .box-shadow { box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05); }
-
-.container {
-    width: 100%;
-    
+.pointer {
+  cursor: pointer;
 }
-
-  
