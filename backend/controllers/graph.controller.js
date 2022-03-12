@@ -9,7 +9,6 @@ export const importXlsx = asyncHandler(async (req, res, next) => {
   if (!req.files) {
     return next(new ErrorResponse('Please add a file', 401));
   } else {
-    console.log(req.files.file);
     const file = req.files.file;
 
     await file.mv('./uploads/' + file.name);
@@ -22,8 +21,6 @@ export const importXlsx = asyncHandler(async (req, res, next) => {
       header: 0,
     });
     const json = sheet1.concat(sheet2);
-    console.log(json[1]);
-    console.log(json);
     res.status(201).json({
       success: true,
       message: 'File uploaded!',

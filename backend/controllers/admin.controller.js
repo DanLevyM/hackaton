@@ -11,7 +11,6 @@ import sendRegisterUserEmail from '../utils/send-register-user-email.js';
 // @access  Private
 export const getUsers = asyncHandler(async (req, res, next) => {
   const users = await User.find();
-  console.log(req.query);
 
   // TO CHECK IF IT USELESS
   if (!users.length) {
@@ -168,10 +167,6 @@ export const addUser = asyncHandler(async (req, res, next) => {
     length: 10,
     numbers: true,
   });
-
-  // Create reset url
-  console.log('req protocol', req.protocol);
-  console.log('req.get(host)', req.get('host'));
 
   // const newPwd = `${req.protocol}://${req.get('host')}/api/v1/user/resetpassword/${resetToken}`;
 

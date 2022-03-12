@@ -12,6 +12,7 @@ import userRouter from './routes/user.router.js';
 import productRouter from './routes/product.router.js';
 import contactRouter from './routes/contact.router.js';
 import graphRouter from './routes/graph.router.js';
+import reportRouter from './routes/report.router.js';
 import fileUpload from 'express-fileupload';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -50,6 +51,7 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/product', productRouter);
 app.use('/api/v1/contact', contactRouter);
 app.use('/api/v1/xlsx', graphRouter);
+app.use('/api/v1/report', reportRouter);
 
 app.use(errorHandler);
 const server = app.listen(
