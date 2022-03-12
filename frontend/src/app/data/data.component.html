@@ -38,14 +38,19 @@
                 </div>
             </div>
         </nav> -->
+<div class="card">
 
-		<form method="POST" enctype="multipart/form-data" (submit)="uploadFile($event)" >
+	<h2>
+		Datas
+	</h2>
+
+		<form method="POST" enctype="multipart/form-data" (submit)="uploadFile($event)" style="margin-left: 20px; margin-bottom: 30px;">
 			<input type="file" name="file" value="UPLOAD">
-			<input type="submit" value="UPLOAD">
+			<input class="upload" type="submit" value="UPLOAD">
 		</form>
 
 		<div [formGroup]="dataForm">
-			<p>Veuillez choisir la meilleure méthode pour vous contacter :</p>
+			<p style="margin-left: 20px;">Choose your filters :</p>
 			<div class="bloc1">
 				<div class="input-skin">
 					<input type="radio" id="skin" name="tab" value="skin" formControlName="tab">
@@ -65,14 +70,14 @@
 					<label for="moisturizing">Moisturizing</label>
 				</div>
 
-				<div>
+				<div class="antiox">
 					<input type="radio" id="antioxidant" name="option" value="antioxidant" formControlName="option">
 					<label for="antioxidant">Antioxidant</label>
 				</div>
 
 				<div>
 					<input type="radio" id="barrier" name="option" value="barrier" formControlName="option">
-					<label for="barrier">Barrier</label>
+					<label class="barrier" for="barrier">Barrier</label>
 				</div>
 			</div>
 			<div class="bloc3">
@@ -108,7 +113,7 @@
 				</pre>
 			</div> -->
 		</div>
-
+	</div>
 		<div #echarts id="main" style="width: 600px;height:400px;"></div>
     </div>
 </div>
