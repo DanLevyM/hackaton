@@ -60,6 +60,8 @@ export class SettingsComponent implements OnInit {
         if (!res?.success) {
           console.error(res.message);
         }
+
+        this.router.navigate(['']);
       });
   }
 
