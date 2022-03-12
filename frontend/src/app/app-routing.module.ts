@@ -12,6 +12,9 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RedirectGuard } from './shared/services/redirect.guard';
+import { SettingsComponent } from './settings/settings.component';
+import { ReportsComponent } from './reports/reports.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {
@@ -70,6 +73,27 @@ const routes: Routes = [
     component: ForgotPasswordComponent,
     data : {
       header: true
+    }
+  },
+  {
+    path: 'reports',
+    component: ReportsComponent,
+    data : {
+      header: false
+    }
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
+    data : {
+      header: false
+    }
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+    data : {
+      header: false
     }
   },
   {

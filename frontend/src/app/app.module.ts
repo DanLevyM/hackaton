@@ -21,6 +21,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { ProgressComponent } from './progress/progress.component';
 import { UploadFileDirective } from './shared/directives/uploadFile.directive';
+import { SettingsComponent } from './settings/settings.component';
+import { ReportsComponent } from './reports/reports.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { UploadFileDirective } from './shared/directives/uploadFile.directive';
     HomeComponent,
     LoginComponent,
     ProgressComponent,
-    UploadFileDirective
+    UploadFileDirective,
+    SettingsComponent,
+    ReportsComponent,
+    UsersComponent
   ],
   imports: [
     AppRoutingModule,

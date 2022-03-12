@@ -1,0 +1,36 @@
+@import "../../assets/styles/colors.scss";
+
+#contact-container {
+    height: 100vh;
+
+    .card {
+        margin: 35px;
+    }
+    h2 {
+        color: $charcoal;
+    }
+
+    .row {
+        height: 90%;
+    }
+
+    #message {
+        height: 200px;
+
+    }
+
+    .btn-submit {
+        background-color: $blueWave;
+        color: $white;
+        width: 100%;
+    }
+
+    .cardbody-color {
+        background-color: $sandDune;
+    }
+
+    #id {
+        margin-right: 25px;
+    }
+
+} 
