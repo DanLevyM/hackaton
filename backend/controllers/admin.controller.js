@@ -65,10 +65,14 @@ export const createUser = asyncHandler(async (req, res, next) => {
 // @path    PUT /api/v1/admin/user/:id
 // @access  Private
 export const updateUser = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.params.id);
+  let user = await User.findById(req.params.id);
   if (!user) {
     return next(new ErrorResponse(`User ${req.params.id} not found!`, 404));
   }
+  user = await User.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
   return res.status(200).json({
     success: true,
     data: user,
