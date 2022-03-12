@@ -1,0 +1,23 @@
+@import "../../assets/styles/colors.scss";
+#allUsers {
+    margin: 50px;
+    height: 850px;
+    width: auto;
+}
+h2 {
+    color: $charcoal;
+    margin: 45px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.card-body {
+    padding: 0px;
+}
+table {
+    text-align: center;
+
+    td {
+        height: 80px;
+        
+    }
+}
