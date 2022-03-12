@@ -38,7 +38,12 @@
                 </div>
             </div>
         </nav> -->
-        <div class="container" id="settings-container">
+        <!-- <div>
+            <pre>
+                {{settingsForm.value | json}}
+            </pre>
+        </div> -->
+        <div class="container" id="settings-container" [formGroup]="settingsForm">
             <div class="row justify-content-center align-items-center">
                 <div class="col-md-11">
                     <div class="card">
@@ -50,7 +55,8 @@
                                     type="text"
                                     class="form-control"
                                     id="name"
-                                    placeholder="Name">
+                                    placeholder="Name"
+                                    formControlName="name">
                             </div>
                             <div class="mb-4">
                                 <label for="email">Email</label>
@@ -59,7 +65,8 @@
                                     class="form-control"
                                     id="email"
                                     aria-describedby="email"
-                                    placeholder="Email">
+                                    placeholder="Email"
+                                    formControlName="email">
                             </div>
                             <div class="mb-4">
                                 <label for="company">Company</label>
@@ -67,7 +74,8 @@
                                     type="text"
                                     class="form-control"
                                     id="object"
-                                    placeholder="Company">
+                                    placeholder="Company"
+                                    formControlName="company">
                             </div>
                             <div class="mb-4">
                                 <label for="password">Actual password</label>
@@ -75,7 +83,8 @@
                                     type="password"
                                     class="form-control"
                                     id="password"
-                                    placeholder="Actual password">
+                                    placeholder="Actual password"
+                                    formControlName="newPassword">
                             </div>
                             <div class="mb-4">
                                 <label for="password">New password</label>
@@ -83,7 +92,8 @@
                                     type="password"
                                     class="form-control"
                                     id="password"
-                                    placeholder="New password">
+                                    placeholder="New password"
+                                    formControlName="password">
                             </div>
                             <div class="mb-4">
                                 <label for="password">Confirm password</label>
@@ -91,10 +101,15 @@
                                     type="password"
                                     class="form-control"
                                     id="password"
-                                    placeholder="Confirm password">
+                                    placeholder="Confirm password"
+                                    formControlName="confirm_password">
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-submit px-6">
+                                <button
+                                    [disabled]="!settingsForm.valid"
+                                    type="submit"
+                                    class="btn btn-submit px-6"
+                                    (click)="updateSettings()">
                                     SAVE CHANGES
                                 </button>
                             </div>
