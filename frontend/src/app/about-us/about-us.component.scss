@@ -45,11 +45,6 @@ body {
     margin-bottom: 50px;
     position: relative;
 
-    h2 {
-      margin-bottom: 50px;
-      font-weight: bold;
-    }
-
     .allIdea {
       display: flex;
       flex-wrap: wrap;
@@ -81,6 +76,10 @@ body {
     font-weight: bold;
     font-size: 24px;
     margin-bottom: 25px;
+    }
+    h2 {
+      margin-bottom: 50px;
+      font-weight: bold;
     }
   #section3{
       position: relative;
