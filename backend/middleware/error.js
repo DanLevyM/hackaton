@@ -4,9 +4,6 @@ export default function errorHandler(err, req, res, next) {
   let error = {...err};
   error.message = err.message;
   console.log(err.stack.red);
-  // Mongoose bad object id
-  // console.log(err.name);
-  console.log(err);
   if (err.name === 'CastError') {
     const message = `${err.value} not found! Wrong format.`;
     error = new ErrorResponse(message, 404);

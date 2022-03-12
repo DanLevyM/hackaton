@@ -19,7 +19,6 @@ dotenv.config({path: '../config/config.env'});
 // @access  Public
 export const login = asyncHandler(async (req, res, next) => {
   const {email, password} = req.body;
-  console.log('res.cookie: ', res.cookie());
 
   if (!email || !password) {
     return next(new ErrorResponse('Please provide valid email and password', 400));
@@ -85,13 +84,7 @@ export const forgotPassword = asyncHandler(async (req, res, next) => {
 
   const resetToken = user.getResetPwdToken();
 
-  console.log(resetToken);
   await user.save({validateBeforeSave: false});
-
-  // Create reset url
-  console.log('req protocol', req.protocol);
-  console.log('req.get(host)', req.get('host'));
-  console.log('resetTok', resetToken);
 
   const resetUrl = `${req.protocol}://${req.get('host')}/api/v1/user/resetpassword/${resetToken}`;
   const message = `You are receiving this email because you has requested the reset of a password. Please make a PUT request to \n\n ${resetUrl}`;
@@ -188,7 +181,6 @@ export const askRegister = asyncHandler(async (req, res, next) => {
 // @path    wGET /api/v1/user/logout
 // @access  Private
 export const logout = asyncHandler(async (req, res, next) => {
-  console.log('res.cookie: ', res.cookie());
   res.cookie('token', 'none', {
     expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
