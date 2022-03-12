@@ -1,65 +1,107 @@
-<div class="container" id="settings-container">
-    <div class="row justify-content-center align-items-center">
-        <div class="col-md-11">
-            <div class="card">
-                <form class="card-body cardbody-color p-lg-9" id="form-settings">
-                    <h2 class="text-dark">Settings</h2>  
-                    <div class="mb-4">
-                        <label for="name">Full Name</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="name"
-                            placeholder="Name">
+<div class="wrapper d-flex align-items-stretch" id="dashboard-container">
+    <nav id="sidebar">
+        <div class="p-4 pt-5">
+            <img src="../../assets/images/wb-logo-white.svg" alt="Wired beauty logo" [routerLink]="['']" class="pointer">
+            <ul class="list-unstyled components mb-5">
+                <li class="active"><a [routerLink]="['']">Dashboard</a></li>
+                <li><a [routerLink]="['/reports']">Reports</a></li>
+                <li><a [routerLink]="['/users']">Users</a></li>
+                <li><a [routerLink]="['/data']">Data</a></li>
+                <li><a [routerLink]="['/settings']">Settings</a></li>
+            </ul>
+        </div>
+        <div class="footer pointer">
+            <p (click)="logout()">Logout</p>
+        </div>
+    </nav>
+    <div id="content" class="p-4 p-md-5">
+        <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light nav-burger">
+            <div class="container-fluid">
+                <button
+                    class="btn d-inline-block d-lg-none ml-auto btn-mobile"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav ml-auto navbar-mobile">
+                        <li class="active"><a [routerLink]="['']">Dashboard</a></li>
+                        <li><a [routerLink]="['/reports']">Reports</a></li>
+                        <li><a [routerLink]="['/users']">Users</a></li>
+                        <li><a [routerLink]="['/data']">Data</a></li>
+                        <li><a [routerLink]="['/settings']">Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav> -->
+        <div class="container" id="settings-container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-11">
+                    <div class="card">
+                        <form class="card-body cardbody-color p-lg-9" id="form-settings">
+                            <h2 class="text-dark">Settings</h2>
+                            <div class="mb-4">
+                                <label for="name">Full Name</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="name"
+                                    placeholder="Name">
+                            </div>
+                            <div class="mb-4">
+                                <label for="email">Email</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="email"
+                                    aria-describedby="email"
+                                    placeholder="Email">
+                            </div>
+                            <div class="mb-4">
+                                <label for="company">Company</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="object"
+                                    placeholder="Company">
+                            </div>
+                            <div class="mb-4">
+                                <label for="password">Actual password</label>
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="password"
+                                    placeholder="Actual password">
+                            </div>
+                            <div class="mb-4">
+                                <label for="password">New password</label>
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="password"
+                                    placeholder="New password">
+                            </div>
+                            <div class="mb-4">
+                                <label for="password">Confirm password</label>
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="password"
+                                    placeholder="Confirm password">
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-submit px-6">
+                                    SAVE CHANGES
+                                </button>
+                            </div>
+                        </form>
                     </div>
-                    <div class="mb-4">
-                        <label for="email">Email</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="email"
-                            aria-describedby="email"
-                            placeholder="Email">
-                    </div>
-                    <div class="mb-4">
-                        <label for="company">Company</label>
-                        <input
-                            type="text"
-                            class="form-control"
-                            id="object"
-                            placeholder="Company">
-                    </div> 
-                    <div class="mb-4">
-                        <label for="password">Actual password</label>
-                        <input
-                            type="password"
-                            class="form-control"
-                            id="password"
-                            placeholder="Actual password">
-                    </div>
-                    <div class="mb-4">
-                        <label for="password">New password</label>
-                        <input
-                            type="password"
-                            class="form-control"
-                            id="password"
-                            placeholder="New password">
-                    </div> 
-                    <div class="mb-4">
-                        <label for="password">Confirm password</label>
-                        <input
-                            type="password"
-                            class="form-control"
-                            id="password"
-                            placeholder="Confirm password">
-                    </div> 
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-submit px-6">
-                            SAVE CHANGES
-                        </button>
-                    </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div> 
+</div>

@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+
+import * as echarts from 'echarts'
 
 import { DataService } from '../shared/services/data.service';
 
@@ -9,21 +12,24 @@ import { DataService } from '../shared/services/data.service';
   styleUrls: ['./data.component.scss']
 })
 export class DataComponent implements OnInit {
+  @ViewChild('echarts', {static: true}) echartsReference: any;
+
   public files: any[] = [];
   public excelFilesData: any[] = [];
   public uploadFileForm: FormGroup;
-
+  public data: any[] = [];
   public dataForm: FormGroup;
-
   public skinBioscenseList: any[] = [];
   public skinBioscenseData: any[] = [];
-
   public perceptionList: any[] = [];
   public perceptionData: any[] = [];
+  public series: any[] = [];
+  public title: string = '';
 
   constructor(
     private dataService: DataService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
   ) {
     this.uploadFileForm = this.fb.group({
       file: ['', Validators.required]
@@ -38,29 +44,84 @@ export class DataComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  /**
-   * Trigger on file drop handler
-   * @param event Dom element file
-   */
-  public onFileDropped(event: any) {
-    this.prepareFilesList(event);
+  private initEchartOptions(): void {
+    const myChart = echarts.init(this.echartsReference.nativeElement);
+
+    const option = {
+      title: {
+        text: this.title
+      },
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'cross'
+        }
+      },
+      toolbox: {
+        show: true,
+        feature: {
+          saveAsImage: {
+            title: 'Load'
+          }
+        }
+      },
+      legend: {
+        data: [this.title]
+      },
+      xAxis: {
+        data: this.series
+      },
+      yAxis: {},
+      series: [
+        {
+          name: this.title,
+          type: 'bar',
+          data: this.data
+        }
+      ]
+    };
+
+    myChart.setOption(option);
   }
 
   /**
    * Generate pdf file
    */
   public generatePdfFile(): void {
-    console.log('Data form', this.dataForm);
     const tab = this.dataForm?.value?.tab;
-    const option = this.dataForm?.value?.option;
+    const option = (this.dataForm?.value?.option === '1') ?
+                      1 : (this.dataForm?.value?.option === '2') ? 2
+                        : (this.dataForm?.value?.option === '3') ? 3 : 0;
     const count = this.dataForm?.value?.count;
 
-    if (tab && tab === 'perception') {
-      this.perceptionList = this.perceptionList
-    } else if (tab && tab === 'skin') {
+    if (this.excelFilesData.length === 2500) {
+      if (tab && tab === 'perception') {
+        this.title = 'Perception of users';
+        this.perceptionData = this.perceptionList.slice(0, Number(count));
+        this.series = this.perceptionData.map(data => data.user_id);
+        this.data = this.perceptionData.map(data => data.score_perception);
+        this.initEchartOptions();
+      } else if (tab && tab === 'skin') {
+        if (option === 1) {
+          this.title = 'Skin biosense antioxydant';
+        } else if (option ===2) {
+          this.title = 'Skin biosense moisturizing';
+        } else if (option === 3) {
+          this.title = 'Skin biosense barrier';
+        } else {
+          console.error('Option not implemented');
+        }
 
+        this.skinBioscenseData = this.skinBioscenseList.slice(0, Number(count));
+        this.skinBioscenseData.filter(el => el.score_skinbiosense === option);
+        this.series = this.skinBioscenseData.map(data => data.user_id);
+        this.data = this.skinBioscenseData.map(data => data.mesure);
+        this.initEchartOptions();
+      } else {
+        console.error('Tab option not implemented');
+      }
     } else {
-      console.error('Tab option not implemented');
+      console.error("Select file managed by admin");
     }
   }
 
@@ -78,8 +139,6 @@ export class DataComponent implements OnInit {
           console.error(res.message);
         }
 
-        console.log('Data', res.data)
-
         if (res?.data.length === 2500) {
           this.uploadFileForm.value.file = true;
           this.excelFilesData = res.data;
@@ -93,73 +152,10 @@ export class DataComponent implements OnInit {
   }
 
   /**
-   * Handle file from browsing
-   * @param target Dom element target
+   * Logout user
    */
-  public fileBrowseHandler(target: any): void {
-    this.prepareFilesList(target.files);
-  }
-
-  /**
-   * Delete file from files list
-   * @param index File index
-   */
-  public deleteFile(index: number): void {
-    this.files.splice(index, 1);
-  }
-
-  /**
-   * Simulate the upload process
-   * @param index File index
-   */
-  public uploadFilesSimulator(index: number): void {
-    setTimeout(() => {
-      if (index === this.files.length) {
-        return;
-      } else {
-        const progressInterval = setInterval(() => {
-          if (this.files[index].progress === 100) {
-            clearInterval(progressInterval);
-            this.uploadFilesSimulator(index + 1);
-          } else {
-            this.files[index].progress += 5;
-          }
-        }, 200);
-      }
-    }, 1000);
-  }
-
-  /**
-   * Convert files list to normal array list
-   * @param files Files list
-   */
-  public prepareFilesList(files: Array<any>): void {
-    // for (const item of files) {
-    //   item.progress = 0;
-    //   this.files.push(item);
-    // }
-    this.files = [];
-    files[0].progress = 0;
-    this.files.push(files[0]); // only one file can be added
-    this.uploadFilesSimulator(0);
-  }
-
-  /**
-   * Format bytes
-   * @param bytes File size in bytes
-   * @param decimals Decimals point
-   * @returns Bytes formatted
-   */
-  public formatBytes(bytes: any, decimals: any = 0): string {
-    if (bytes === 0) {
-      return '0 Bytes';
-    }
-
-    const k = 1024;
-    const dm = decimals <= 0 ? 0 : decimals || 2;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
+  public logout(): void {
+    localStorage.clear();
+    this.router.navigate(['']);
   }
 }
