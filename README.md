@@ -8,6 +8,7 @@ localhost://4200
 ## Backend - NodeJS MongoDB Express
 
 npm start
+To have more logs: npm run dev
 
 ## Mailer Mailtrap.io + nodemailer
 
